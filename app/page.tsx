@@ -6,12 +6,8 @@ import 'aos/dist/aos.css';
 import { FaDiscord } from 'react-icons/fa';
 import CountUp from 'react-countup';
 import Snowfall from 'react-snowfall';
-import Head from 'next/head';
-import { headers } from 'next/headers';
 import Image from 'next/image';
-
-// Declaración del módulo 'aos' para evitar el error de tipos
-declare module 'aos';
+import { Metadata } from './metadata'; // Importa el componente de metadatos (Server Component)
 
 const Home = () => {
   const [members] = useState<number>(22468);
@@ -45,60 +41,6 @@ const Home = () => {
       document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
-
-  // Función para generar metadatos dinámicos
-  const generateMetadata = () => {
-    const headerList = headers();
-    const urlHeader = headerList.get('x-url');
-    const url = urlHeader ? new URL(urlHeader) : undefined;
-
-    if (url) {
-      const path = url.pathname;
-      return {
-        title: "Gatitos World 2 - La mejor comunidad",
-        description: "Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más.",
-        metadataBase: new URL("https://gatitos2.world"),
-        alternates: {
-          languages: {
-            "x-default": path,
-            "en": `${path}/?hl=en-US`,
-            "es": `${path}/?hl=es-ES`,
-          },
-        },
-      };
-    }
-
-    return {
-      title: "Gatitos World 2 - La mejor comunidad",
-      description: "Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más.",
-    };
-  };
-
-  const metadata = generateMetadata();
-
-  return (
-    <>
-      <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        {/* Open Graph (OG) Metatags */}
-        <meta property="og:title" content={metadata.title} />
-        <meta property="og:description" content={metadata.description} />
-        <meta property="og:image" content="https://gatitos2.world/images/hero-bg.jpg" />
-        <meta property="og:url" content="https://gatitos2.world" />
-        <meta property="og:type" content="website" />
-
-        {/* Twitter Metatags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={metadata.title} />
-        <meta name="twitter:description" content={metadata.description} />
-        <meta name="twitter:image" content="https://gatitos2.world/images/hero-bg.jpg" />
-
-        {/* Favicon */}
-        <link rel="icon" href="/images/favicon.ico" />
-      </Head>
 
       <div className="bg-gray-900 text-white font-inter">
         {/* Efecto de Copos de Nieve */}
