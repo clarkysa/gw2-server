@@ -1,4 +1,4 @@
-// app/metadata.tsx
+// app/metadata.tsx (Este debe ser un Server Component)
 import { headers } from 'next/headers';
 
 export default function Metadata() {
