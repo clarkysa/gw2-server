@@ -52,7 +52,7 @@ const Home = () => {
         <meta property="og:site_name" content="Gatitos World 2" />
         <meta name="robots" content="index, follow" />
         <link rel="icon" href="/favicon.ico" />
-        <title>GW2 - Gatitos World 2</title>
+        <title>GW2</title>
       </head>
 
       <div className="bg-gray-900 text-white font-inter">
