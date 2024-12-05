@@ -60,7 +60,7 @@ const Home = () => {
       {/* Open Graph (OG) Metatags */}
       <meta property="og:title" content="Gatitos World 2 - La mejor comunidad" />
       <meta property="og:description" content="Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más." />
-      <meta property="og:image" content="/images/hero-bg.jpg" />
+      <meta property="og:image" content="https://gatitos2.world/images/hero-bg.jpg" />
       <meta property="og:url" content="https://gatitos2.world" />
       <meta property="og:type" content="website" />
     
@@ -68,7 +68,10 @@ const Home = () => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="Gatitos World 2 - La mejor comunidad" />
       <meta name="twitter:description" content="Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más." />
-      <meta name="twitter:image" content="/images/hero-bg.jpg" />
+      <meta name="twitter:image" content="https://gatitos2.world/images/hero-bg.jpg" />
+    
+      {/* Favicon */}
+      <link rel="icon" href="/images/favicon.ico" />
     </Head>
 
       <div className="bg-gray-900 text-white font-inter">
