@@ -3,19 +3,20 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaDiscord } from 'react-icons/fa'; // Eliminamos FaStar porque no se utiliza
-import CountUp from 'react-countup'; // Esto es correcto
-import Snowfall from 'react-snowfall'; // Importamos la librería para el efecto de nieve
-import Head from 'next/head'; // Importamos Head para manipular la metadata de la página
-import Image from 'next/image'; // Importamos Image de Next.js
+import { FaDiscord } from 'react-icons/fa';
+import CountUp from 'react-countup';
+import Snowfall from 'react-snowfall';
+import Head from 'next/head';
+import { headers } from 'next/headers';
+import Image from 'next/image';
 
 // Declaración del módulo 'aos' para evitar el error de tipos
 declare module 'aos';
 
 const Home = () => {
-  const [members] = useState<number>(22468); // Contador de miembros (ejemplo estático)
-  const [staff] = useState<number>(50); // Contador de staff (ejemplo estático)
-  const [messages] = useState<number>(1461747); // Contador de mensajes (ejemplo estático)
+  const [members] = useState<number>(22468);
+  const [staff] = useState<number>(50);
+  const [messages] = useState<number>(1461747);
 
   useEffect(() => {
     AOS.init({
@@ -24,50 +25,75 @@ const Home = () => {
       once: true,
     });
 
-    // Asegurarnos de que la página siempre cargue desde el top
     window.scrollTo(0, 0);
 
-    // Crear el efecto de luz que sigue el cursor
     const lightEffect = document.querySelector('.light-effect') as HTMLElement;
 
-    // Mover la luz cuando el mouse se mueve
     const handleMouseMove = (event: MouseEvent) => {
       const mouseX = event.clientX;
       const mouseY = event.clientY;
 
       if (lightEffect) {
-        lightEffect.style.left = `${mouseX - lightEffect.offsetWidth / 2}px`; // Centra la luz en el cursor
-        lightEffect.style.top = `${mouseY - lightEffect.offsetHeight / 2}px`; // Centra la luz en el cursor
+        lightEffect.style.left = `${mouseX - lightEffect.offsetWidth / 2}px`;
+        lightEffect.style.top = `${mouseY - lightEffect.offsetHeight / 2}px`;
       }
     };
 
-    // Asignar el evento del mouse
     document.addEventListener('mousemove', handleMouseMove);
 
-    // Limpiar el evento cuando el componente se desmonte
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
+  // Función para generar metadatos dinámicos
+  const generateMetadata = () => {
+    const headerList = headers();
+    const urlHeader = headerList.get('x-url');
+    const url = urlHeader ? new URL(urlHeader) : undefined;
+
+    if (url) {
+      const path = url.pathname;
+      return {
+        title: "Gatitos World 2 - La mejor comunidad",
+        description: "Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más.",
+        metadataBase: new URL("https://gatitos2.world"),
+        alternates: {
+          languages: {
+            "x-default": path,
+            "en": `${path}/?hl=en-US`,
+            "es": `${path}/?hl=es-ES`,
+          },
+        },
+      };
+    }
+
+    return {
+      title: "Gatitos World 2 - La mejor comunidad",
+      description: "Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más.",
+    };
+  };
+
+  const metadata = generateMetadata();
+
   return (
     <>
       <Head>
-        <title>Gatitos World 2 - La mejor comunidad</title>
-        <meta name="description" content="Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más." />
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         {/* Open Graph (OG) Metatags */}
-        <meta property="og:title" content="Gatitos World 2 - La mejor comunidad" />
-        <meta property="og:description" content="Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más." />
+        <meta property="og:title" content={metadata.title} />
+        <meta property="og:description" content={metadata.description} />
         <meta property="og:image" content="https://gatitos2.world/images/hero-bg.jpg" />
         <meta property="og:url" content="https://gatitos2.world" />
         <meta property="og:type" content="website" />
 
         {/* Twitter Metatags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Gatitos World 2 - La mejor comunidad" />
-        <meta name="twitter:description" content="Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más." />
+        <meta name="twitter:title" content={metadata.title} />
+        <meta name="twitter:description" content={metadata.description} />
         <meta name="twitter:image" content="https://gatitos2.world/images/hero-bg.jpg" />
 
         {/* Favicon */}
