@@ -1,30 +1,21 @@
-// app/metadata.tsx (Este será un Server Component)
+// app/metadata.tsx
+import { Metadata } from 'next';
 import { headers } from 'next/headers';
 
-export function ServerMetadata() {
-  const headerList = headers();
-  const urlHeader = headerList.get('x-url');
-  const url = urlHeader ? new URL(urlHeader) : undefined;
+export default function PageMetadata() {
+  // Aquí puedes usar headers de Next.js y cualquier otra lógica de servidor que necesites
+  const headersList = headers();
+  const host = headersList.get('host');
 
-  let metadata = {
-    title: "Gatitos World 2 - La mejor comunidad",
-    description: "Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más.",
-  };
-
-  if (url) {
-    const path = url.pathname;
-    metadata = {
-      ...metadata,
-      metadataBase: new URL("https://gatitos2.world"),
-      alternates: {
-        languages: {
-          "x-default": path,
-          "en": `${path}/?hl=en-US`,
-          "es": `${path}/?hl=es-ES`,
-        },
-      },
-    };
-  }
-
-  return metadata;
+  return (
+    <Metadata>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description" content="Gatitos World 2 - Conéctate y juega" />
+      <meta property="og:image" content="URL_DE_LA_IMAGEN_AQUI" />
+      <meta property="og:site_name" content="Gatitos World 2" />
+      <meta name="robots" content="index, follow" />
+      <link rel="icon" href="/favicon.ico" />
+      {/* Otros metadatos como el título y descripción */}
+    </Metadata>
+  );
 }
