@@ -119,7 +119,7 @@ const Home = () => {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white mb-4">¿Quiénes Somos?</h2>
             <p className="text-lg text-gray-400 mx-auto max-w-4xl">
-              Gatitos World 2 es un servidor modernizado que nace del legado del querido Gatitos World. Nuestro objetivo es crear un espacio donde todos los jugadores, tanto veteranos como nuevos, puedan disfrutar de una experiencia de juego excepcional, rodeados de una comunidad amigable y apasionada.
+              Bienvenido a Gatitos World 2 (GW2), un servidor de Discord donde la amistad, la diversión y el buen rollo se dan la mano. Somos una comunidad vibrante y acogedora compuesta por amantes de los gatos, entusiastas de los videojuegos, y personas que buscan un espacio cálido para relajarse, compartir y hacer nuevas amistades. Aquí, cada miembro es valorado y se fomenta la participación activa para construir un ambiente donde todos se sientan como en casa.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
