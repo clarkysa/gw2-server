@@ -7,6 +7,10 @@ import { FaDiscord } from 'react-icons/fa'; // Eliminamos FaStar porque no se ut
 import CountUp from 'react-countup'; // Esto es correcto
 import Snowfall from 'react-snowfall'; // Importamos la librería para el efecto de nieve
 import Head from 'next/head'; // Importamos Head para manipular la metadata de la página
+import Image from 'next/image'; // Importamos Image de Next.js
+
+// Declaración del módulo 'aos' para evitar el error de tipos
+declare module 'aos';
 
 const Home = () => {
   const [members] = useState<number>(22468); // Contador de miembros (ejemplo estático)
@@ -66,10 +70,12 @@ const Home = () => {
         <header className="fixed top-0 left-0 w-full z-50 bg-gray-900 px-6 py-4 shadow-md flex justify-between items-center">
           {/* Logo Circular a la Izquierda */}
           <div className="flex items-center">
-            <img 
+            <Image 
               src="/images/logo.png"
               alt="Logo"
-              className="h-16 w-16 rounded-full border-4 border-white" 
+              width={64} 
+              height={64} 
+              className="rounded-full border-4 border-white" 
             />
           </div>
 
@@ -125,17 +131,35 @@ const Home = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
             <div className="bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-transform duration-300">
-              <img src="/images/evento.png" alt="Comunidad 1" className="w-full h-56 object-cover rounded-lg mb-4" />
+              <Image 
+                src="/images/evento.png" 
+                alt="Comunidad 1" 
+                width={500} 
+                height={500} 
+                className="w-full h-56 object-cover rounded-lg mb-4" 
+              />
               <h3 className="text-2xl font-semibold text-white mb-2">Eventos en Vivo</h3>
               <p className="text-gray-300">Participa en eventos en tiempo real, accede a transmisiones exclusivas y conoce a otros miembros en vivo.</p>
             </div>
             <div className="bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-transform duration-300">
-              <img src="/images/sorteo.png" alt="Comunidad 2" className="w-full h-56 object-cover rounded-lg mb-4" />
+              <Image 
+                src="/images/sorteo.png" 
+                alt="Comunidad 2" 
+                width={500} 
+                height={500} 
+                className="w-full h-56 object-cover rounded-lg mb-4" 
+              />
               <h3 className="text-2xl font-semibold text-white mb-2">Contenidos Exclusivos</h3>
               <p className="text-gray-300">Accede a sorteos, experiencia y contenido que no encontrarás en ningún otro lugar. Solo para miembros.</p>
             </div>
             <div className="bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-transform duration-300">
-              <img src="/images/server.png" alt="Comunidad 3" className="w-full h-56 object-cover rounded-lg mb-4" />
+              <Image 
+                src="/images/server.png" 
+                alt="Comunidad 3" 
+                width={500} 
+                height={500} 
+                className="w-full h-56 object-cover rounded-lg mb-4" 
+              />
               <h3 className="text-2xl font-semibold text-white mb-2">Conexión Global</h3>
               <p className="text-gray-300">Conéctate con personas de todo el mundo, comparte conocimientos y haz amigos en todo el planeta.</p>
             </div>
@@ -172,17 +196,35 @@ const Home = () => {
           <h2 className="text-4xl font-bold text-white mb-8">Beneficios VIP</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
             <div className="bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-transform duration-300">
-              <img src="/images/vip1.png" alt="Color VIP" className="w-full h-56 object-cover rounded-lg mb-4" />
+              <Image 
+                src="/images/vip1.png" 
+                alt="Color VIP" 
+                width={500} 
+                height={500} 
+                className="w-full h-56 object-cover rounded-lg mb-4" 
+              />
               <h3 className="text-2xl font-semibold text-white mb-2">Color VIP en Discord</h3>
               <p className="text-gray-300">Obtén un color especial en Discord y destaca entre los demás miembros.</p>
             </div>
             <div className="bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-transform duration-300">
-              <img src="/images/vip2.png" alt="Acceso Exclusivo" className="w-full h-56 object-cover rounded-lg mb-4" />
+              <Image 
+                src="/images/vip2.png" 
+                alt="Acceso Exclusivo" 
+                width={500} 
+                height={500} 
+                className="w-full h-56 object-cover rounded-lg mb-4" 
+              />
               <h3 className="text-2xl font-semibold text-white mb-2">Acceso Exclusivo</h3>
               <p className="text-gray-300">Accede a sorteos, contenido y eventos solo para miembros VIP.</p>
             </div>
             <div className="bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-transform duration-300">
-              <img src="/images/vip3.png" alt="Vanity URL" className="w-full h-56 object-cover rounded-lg mb-4" />
+              <Image 
+                src="/images/vip3.png" 
+                alt="Vanity URL" 
+                width={500} 
+                height={500} 
+                className="w-full h-56 object-cover rounded-lg mb-4" 
+              />
               <h3 className="text-2xl font-semibold text-white mb-2">Vanity URL</h3>
               <p className="text-gray-300">Obtén el rol VIP con tan solo colocar la vanity <strong>.gg/gatitos2 o /gatitos2</strong> en tu estado</p>
             </div>
