@@ -42,6 +42,9 @@ const Home = () => {
     };
   }, []);
 
+  return (
+    <>
+      <Metadata />
       <div className="bg-gray-900 text-white font-inter">
         {/* Efecto de Copos de Nieve */}
         <Snowfall />
@@ -100,6 +103,10 @@ const Home = () => {
             </div>
           </div>
         </section>
+      </div>
+    </>
+  );
+};
 
         {/* Acerca de Nosotros */}
         <section id="about" className="py-20 bg-gray-800" data-aos="fade-up">
