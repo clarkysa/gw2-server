@@ -53,8 +53,22 @@ const Home = () => {
   return (
     <>
     <Head>
-      <title>Gatitos World 2</title>
-      <meta name="description" content="Bienvenido a la comunidad de Gatitos World 2." />
+      <title>Gatitos World 2 - La mejor comunidad</title>
+      <meta name="description" content="Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más." />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+      {/* Open Graph (OG) Metatags */}
+      <meta property="og:title" content="Gatitos World 2 - La mejor comunidad" />
+      <meta property="og:description" content="Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más." />
+      <meta property="og:image" content="/images/hero-bg.jpg" />
+      <meta property="og:url" content="https://gatitos2.world" />
+      <meta property="og:type" content="website" />
+    
+      {/* Twitter Metatags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Gatitos World 2 - La mejor comunidad" />
+      <meta name="twitter:description" content="Únete a Gatitos World 2, la comunidad más activa de Minecraft con eventos, sorteos y más." />
+      <meta name="twitter:image" content="/images/hero-bg.jpg" />
     </Head>
 
       <div className="bg-gray-900 text-white font-inter">
