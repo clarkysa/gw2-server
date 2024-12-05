@@ -1,7 +1,7 @@
-// app/metadata.tsx (Este debe ser un Server Component)
+// app/metadata.tsx (Este será un Server Component)
 import { headers } from 'next/headers';
 
-export default function Metadata() {
+export function ServerMetadata() {
   const headerList = headers();
   const urlHeader = headerList.get('x-url');
   const url = urlHeader ? new URL(urlHeader) : undefined;
@@ -26,5 +26,5 @@ export default function Metadata() {
     };
   }
 
-  return metadata; // Devuelve los metadatos
+  return metadata;
 }
