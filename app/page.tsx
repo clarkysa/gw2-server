@@ -8,7 +8,6 @@ import { FaDiscord } from 'react-icons/fa';
 import CountUp from 'react-countup';
 import Snowfall from 'react-snowfall';
 import Image from 'next/image';
-import PageMetadata from './metadata'; // Importa el componente de metadatos (Server Component)
 
 const Home = () => {
   const [members] = useState<number>(22468);
@@ -45,8 +44,17 @@ const Home = () => {
 
   return (
     <>
-      {/* Aquí se incluye el Server Component de metadatos */}
-      <PageMetadata />
+      {/* Metadatos del sitio */}
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Gatitos World 2 - Conéctate y juega" />
+        <meta property="og:image" content="URL_DE_LA_IMAGEN_AQUI" />
+        <meta property="og:site_name" content="Gatitos World 2" />
+        <meta name="robots" content="index, follow" />
+        <link rel="icon" href="/favicon.ico" />
+        <title>GW2 - Gatitos World 2</title>
+      </head>
+
       <div className="bg-gray-900 text-white font-inter">
         {/* Efecto de Copos de Nieve */}
         <Snowfall />
