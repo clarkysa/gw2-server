@@ -3,9 +3,8 @@ import { Metadata } from 'next';
 import { headers } from 'next/headers'; // Solo para uso en Server Components
 
 export default function PageMetadata() {
-  // Aquí puedes usar headers de Next.js y cualquier otra lógica de servidor
   const headersList = headers();
-  const host = headersList.get('host');
+  const host = headersList.get('host'); // Ejemplo de uso de headers del servidor
 
   return (
     <Metadata>
