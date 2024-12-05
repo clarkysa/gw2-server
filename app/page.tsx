@@ -104,9 +104,6 @@ const Home = () => {
           </div>
         </section>
       </div>
-    </>
-  );
-};
 
         {/* Acerca de Nosotros */}
         <section id="about" className="py-20 bg-gray-800" data-aos="fade-up">
