@@ -1,3 +1,4 @@
+// app/page.tsx
 'use client'; // Asegura que el componente se ejecute en el cliente
 
 import React, { useState, useEffect } from 'react';
@@ -7,7 +8,7 @@ import { FaDiscord } from 'react-icons/fa';
 import CountUp from 'react-countup';
 import Snowfall from 'react-snowfall';
 import Image from 'next/image';
-import { Metadata } from './metadata'; // Importa el componente de metadatos (Server Component)
+import PageMetadata from './metadata'; // Importa el componente de metadatos (Server Component)
 
 const Home = () => {
   const [members] = useState<number>(22468);
@@ -44,7 +45,8 @@ const Home = () => {
 
   return (
     <>
-      <Metadata />
+      {/* Aquí se incluye el Server Component de metadatos */}
+      <PageMetadata />
       <div className="bg-gray-900 text-white font-inter">
         {/* Efecto de Copos de Nieve */}
         <Snowfall />
