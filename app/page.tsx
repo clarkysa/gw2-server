@@ -52,29 +52,10 @@ const Home = () => {
 
   return (
     <>
-      <Head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Gatitos World 2 es un servidor para gamers con eventos exclusivos, sorteos y una comunidad activa. ¡Conéctate ahora!" />
-        <meta name="keywords" content="Gatitos World, servidor de gamers, comunidad, discord, juegos, eventos, sorteos, contenidos exclusivos" />
-        <meta name="author" content="Gatitos World 2" />
-        <link rel="icon" href="/favicon.ico" />
-        <title>Gatitos World 2 - Comunidad de Gamers</title>
-
-        {/* Open Graph meta tags */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Gatitos World 2 - Comunidad de Gamers" />
-        <meta property="og:description" content="Gatitos World 2 es un servidor para gamers con eventos exclusivos, sorteos y una comunidad activa. ¡Conéctate ahora!" />
-        <meta property="og:image" content="/images/og-image.jpg" />
-        <meta property="og:url" content="https://gatitosworld2.com" />
-
-        {/* Twitter Card meta tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Gatitos World 2 - Comunidad de Gamers" />
-        <meta name="twitter:description" content="Gatitos World 2 es un servidor para gamers con eventos exclusivos, sorteos y una comunidad activa. ¡Conéctate ahora!" />
-        <meta name="twitter:image" content="/images/og-image.jpg" />
-        <meta name="twitter:creator" content="@GatitosWorld2" />
-      </Head>
+    <Head>
+      <title>Gatitos World 2</title>
+      <meta name="description" content="Bienvenido a la comunidad de Gatitos World 2." />
+    </Head>
 
       <div className="bg-gray-900 text-white font-inter">
         {/* Efecto de Copos de Nieve */}
