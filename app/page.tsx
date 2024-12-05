@@ -3,15 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaDiscord, FaStar } from 'react-icons/fa';
+import { FaDiscord } from 'react-icons/fa'; // Eliminamos FaStar porque no se utiliza
 import CountUp from 'react-countup'; // Esto es correcto
 import Snowfall from 'react-snowfall'; // Importamos la librería para el efecto de nieve
 import Head from 'next/head'; // Importamos Head para manipular la metadata de la página
 
 const Home = () => {
-  const [members, setMembers] = useState<number>(22468); // Contador de miembros (ejemplo estático)
-  const [staff, setStaff] = useState<number>(50); // Contador de staff (ejemplo estático)
-  const [messages, setMessages] = useState<number>(1461747); // Contador de mensajes (ejemplo estático)
+  const [members] = useState<number>(22468); // Contador de miembros (ejemplo estático)
+  const [staff] = useState<number>(50); // Contador de staff (ejemplo estático)
+  const [messages] = useState<number>(1461747); // Contador de mensajes (ejemplo estático)
 
   useEffect(() => {
     AOS.init({
