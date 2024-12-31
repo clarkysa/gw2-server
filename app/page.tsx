@@ -173,32 +173,59 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Estadísticas */}
-      <section className="py-24 bg-gray-800">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Estadísticas Mejoradas */}
+      <section className="py-24 bg-gray-800 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/stats-bg.jpg')] opacity-10 bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text" data-aos="fade-up">
+            Nuestros Números
+          </h2>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: <FaUsers className="text-4xl mb-4 text-blue-400" />, title: "Miembros", value: members },
-              { icon: <FaUserShield className="text-4xl mb-4 text-purple-400" />, title: "Staff", value: staff },
-              { icon: <FaComments className="text-4xl mb-4 text-green-400" />, title: "Mensajes", value: messages }
+              { 
+                icon: <FaUsers className="text-5xl mb-4 text-blue-400" />, 
+                title: "Miembros Activos", 
+                value: members,
+                gradient: "from-blue-400 to-blue-600"
+              },
+              { 
+                icon: <FaUserShield className="text-5xl mb-4 text-purple-400" />, 
+                title: "Staff Dedicado", 
+                value: staff,
+                gradient: "from-purple-400 to-purple-600"
+              },
+              { 
+                icon: <FaComments className="text-5xl mb-4 text-green-400" />, 
+                title: "Mensajes Compartidos", 
+                value: messages,
+                gradient: "from-green-400 to-green-600"
+              }
             ].map((stat, index) => (
               <div 
                 key={index}
-                className="relative overflow-hidden rounded-2xl bg-gray-900 p-8 text-center transform hover:-translate-y-2 transition-all duration-300"
+                className="relative group"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10"></div>
-                <div className="relative z-10">
-                  {stat.icon}
-                  <h3 className="text-xl font-semibold mb-4 text-gray-300">{stat.title}</h3>
-                  <CountUp
-                    start={0}
-                    end={stat.value}
-                    duration={2.5}
-                    separator=","
-                    className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text"
-                  />
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-xl rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+                <div className="relative backdrop-blur-sm bg-gray-900/90 rounded-3xl p-8 text-center transform hover:-translate-y-2 transition-all duration-300 border border-gray-700/50">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/50 to-purple-500/50 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="flex justify-center mb-4">
+                      {stat.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-100">{stat.title}</h3>
+                    <CountUp
+                      start={0}
+                      end={stat.value}
+                      duration={2.5}
+                      separator=","
+                      className={`text-5xl font-bold bg-gradient-to-r ${stat.gradient} text-transparent bg-clip-text`}
+                    />
+                  </div>
                 </div>
               </div>
             ))}
@@ -206,50 +233,85 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Beneficios VIP */}
-      <section className="py-24 bg-gradient-to-b from-gray-800 to-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-yellow-400 to-yellow-600 text-transparent bg-clip-text" data-aos="fade-up">
-            Beneficios VIP
+      {/* Beneficios VIP Mejorados */}
+      <section className="py-24 bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/vip-bg.jpg')] opacity-10 bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/10 via-yellow-500/10 to-orange-500/10"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-yellow-300 to-yellow-500 text-transparent bg-clip-text" data-aos="fade-up">
+            Experiencia VIP
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
               {
                 title: "Color VIP Exclusivo",
-                description: "Destaca con un color único en el servidor",
-                image: "/images/vip1.png"
+                description: "Destaca en el servidor con un color único que refleja tu estatus especial",
+                image: "/images/vip1.png",
+                gradient: "from-purple-500 to-blue-500"
               },
               {
                 title: "Acceso Premium",
-                description: "Contenido y eventos exclusivos solo para VIPs",
-                image: "/images/vip2.png"
+                description: "Disfruta de contenido exclusivo, eventos privados y beneficios únicos",
+                image: "/images/vip2.png",
+                gradient: "from-yellow-500 to-orange-500"
               },
               {
                 title: "Vanity URL",
-                description: "Obtén el rol VIP con .gg/gatitos2",
-                image: "/images/vip3.png"
+                description: "Obtén el codiciado rol VIP usando .gg/gatitos2 en tu perfil",
+                image: "/images/vip3.png",
+                gradient: "from-blue-500 to-green-500"
               }
             ].map((benefit, index) => (
               <div 
                 key={index}
-                className="group bg-gray-800 rounded-2xl overflow-hidden transform hover:-translate-y-2 transition-all duration-300"
+                className="group relative"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
-                <div className="relative h-48 overflow-hidden">
-                  <Image 
-                    src={benefit.image}
-                    alt={benefit.title}
-                    width={500}
-                    height={300}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-yellow-400">{benefit.title}</h3>
-                  <p className="text-gray-400">{benefit.description}</p>
+                {/* Efecto de luz */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-white/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500"></div>
+                
+                {/* Card Container */}
+                <div className="relative bg-gray-800/90 backdrop-blur-sm rounded-3xl overflow-hidden transform group-hover:-translate-y-2 transition-all duration-500">
+                  {/* Imagen Container con efecto curvo */}
+                  <div className="relative h-72 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/60 z-10"></div>
+                    <Image 
+                      src={benefit.image}
+                      alt={benefit.title}
+                      width={800}
+                      height={600}
+                      className="w-full h-full object-cover transform scale-110 group-hover:scale-125 transition-transform duration-700 ease-out"
+                      style={{
+                        clipPath: "polygon(0 0, 100% 0%, 100% 85%, 0% 100%)"
+                      }}
+                    />
+                    {/* Efecto de luz brillante */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+                  </div>
+                  
+                  {/* Contenido */}
+                  <div className="p-8 relative">
+                    {/* Línea decorativa */}
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+                    
+                    <h3 className={`text-2xl font-bold mb-3 bg-gradient-to-r ${benefit.gradient} text-transparent bg-clip-text`}>
+                      {benefit.title}
+                    </h3>
+                    <p className="text-gray-300 leading-relaxed">
+                      {benefit.description}
+                    </p>
+                    
+                    {/* Botón sutil */}
+                    <div className="mt-6">
+                      <a href="#" className="inline-flex items-center text-sm text-yellow-400 hover:text-yellow-300 transition-colors duration-300">
+                        Saber más
+                        <FaArrowRight className="ml-2 text-xs group-hover:translate-x-1 transition-transform duration-300" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
