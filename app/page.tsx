@@ -60,7 +60,7 @@ const Home = () => {
         <Snowfall />
 
         {/* Header Limpio y Moderno */}
-        <header className="fixed top-0 left-0 w-full z-50 bg-gray-900 px-6 py-4 shadow-md flex justify-between items-center">
+        <header className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-6 py-4 shadow-lg flex justify-between items-center">
           {/* Logo Circular a la Izquierda */}
           <div className="flex items-center">
             <Image 
@@ -164,85 +164,23 @@ const Home = () => {
           <h2 className="text-4xl font-bold text-white mb-8">Estadísticas del Servidor</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
             <div className="bg-gray-800 p-8 rounded-xl shadow-lg">
-              <h3 className="text-2xl font-semibold text-white mb-2">Miembros</h3>
-              <p className="text-gray-300 text-4xl">
-                <CountUp start={0} end={members} duration={2.5} separator="," />
-              </p>
+              <h3 className="text-3xl font-bold text-white mb-4">Miembros</h3>
+              <CountUp start={0} end={members} duration={2} className="text-4xl text-blue-500" />
             </div>
             <div className="bg-gray-800 p-8 rounded-xl shadow-lg">
-              <h3 className="text-2xl font-semibold text-white mb-2">Staff</h3>
-              <p className="text-gray-300 text-4xl">
-                <CountUp start={0} end={staff} duration={2.5} separator="," />
-              </p>
+              <h3 className="text-3xl font-bold text-white mb-4">Staff</h3>
+              <CountUp start={0} end={staff} duration={2} className="text-4xl text-blue-500" />
             </div>
             <div className="bg-gray-800 p-8 rounded-xl shadow-lg">
-              <h3 className="text-2xl font-semibold text-white mb-2">Mensajes</h3>
-              <p className="text-gray-300 text-4xl">
-                <CountUp start={0} end={messages} duration={2.5} separator="," />
-              </p>
+              <h3 className="text-3xl font-bold text-white mb-4">Mensajes</h3>
+              <CountUp start={0} end={messages} duration={2} className="text-4xl text-blue-500" />
             </div>
           </div>
-        </section>
-
-        {/* Beneficios VIP */}
-        <section id="vip-benefits" className="py-20 bg-gradient-to-r from-yellow-500 to-yellow-600 text-center" data-aos="fade-up">
-          <h2 className="text-4xl font-bold text-white mb-8">Beneficios VIP</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
-            <div className="bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-transform duration-300">
-              <Image 
-                src="/images/vip1.png" 
-                alt="Color VIP" 
-                width={500} 
-                height={500} 
-                className="w-full h-56 object-cover rounded-lg mb-4" 
-              />
-              <h3 className="text-2xl font-semibold text-white mb-2">Color VIP en Discord</h3>
-              <p className="text-gray-300">Obtén un color especial en Discord y destaca entre los demás miembros.</p>
-            </div>
-            <div className="bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-transform duration-300">
-              <Image 
-                src="/images/vip2.png" 
-                alt="Acceso Exclusivo" 
-                width={500} 
-                height={500} 
-                className="w-full h-56 object-cover rounded-lg mb-4" 
-              />
-              <h3 className="text-2xl font-semibold text-white mb-2">Acceso Exclusivo</h3>
-              <p className="text-gray-300">Accede a sorteos, contenido y eventos solo para miembros VIP.</p>
-            </div>
-            <div className="bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-transform duration-300">
-              <Image 
-                src="/images/vip3.png" 
-                alt="Vanity URL" 
-                width={500} 
-                height={500} 
-                className="w-full h-56 object-cover rounded-lg mb-4" 
-              />
-              <h3 className="text-2xl font-semibold text-white mb-2">Vanity URL</h3>
-              <p className="text-gray-300">Obtén el rol VIP con tan solo colocar la vanity <strong>.gg/gatitos2 o /gatitos2</strong> en tu estado</p>
-            </div>
-          </div>
-        </section>
-
-        {/* ¿Qué estás esperando para unirte? */}
-        <section className="py-20 bg-blue-900 text-center text-white" data-aos="fade-up">
-          <h2 className="text-4xl font-bold mb-4">¿Qué estás esperando para unirte?</h2>
-          <p className="text-lg mb-6 max-w-3xl mx-auto">
-            No pierdas la oportunidad de ser parte de nuestra increíble comunidad. Disfruta de eventos, sorteos exclusivos y conoce a personas de todo el mundo. ¡Haz crecer tu experiencia de juego y diviértete con nosotros!
-          </p>
-          <a
-            href="https://discord.gg/gatitos2"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-8 py-4 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105"
-          >
-            ¡Únete Ya!
-          </a>
         </section>
 
         {/* Footer */}
-        <footer className="py-8 bg-gray-900 text-center text-gray-400">
-          <p>&copy; 2024 - 2025 GW2 | Todos los derechos reservados</p>
+        <footer className="bg-gray-800 py-6 text-center text-gray-400">
+          <p>&copy; 2024 GW2. Todos los derechos reservados.</p>
         </footer>
       </div>
     </>
