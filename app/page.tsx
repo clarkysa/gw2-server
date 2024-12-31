@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments } from 'react-icons/fa';
+import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments, FaStar, FaHeart, FaGamepad } from 'react-icons/fa';
 import CountUp from 'react-countup';
 import Snowfall from 'react-snowfall';
 import Image from 'next/image';
@@ -12,19 +12,28 @@ const Home = () => {
   const [members] = useState<number>(22468);
   const [staff] = useState<number>(50);
   const [messages] = useState<number>(1461747);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     AOS.init({
-      duration: 1000,
+      duration: 1200,
       easing: 'ease-out-cubic',
-      once: true,
+      once: false, // Changed to false for repeated animations
+      mirror: true, // Enables animations when scrolling up
     });
 
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
     window.scrollTo(0, 0);
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white font-inter">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white font-inter overflow-hidden">
       {/* Metadata */}
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,30 +45,39 @@ const Home = () => {
         <title>GW2 - Tu nuevo hogar en Discord</title>
       </head>
 
-      {/* Efectos Visuales */}
+      {/* Enhanced Visual Effects */}
       <div className="fixed inset-0 z-0">
         <Snowfall
-          snowflakeCount={100}
+          snowflakeCount={150}
+          radius={[0.5, 3.0]}
+          speed={[0.5, 3.0]}
+          wind={[-0.5, 2.0]}
+          color="rgba(255, 255, 255, 0.3)"
           style={{
             position: 'fixed',
             width: '100vw',
             height: '100vh',
           }}
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/10 to-purple-900/10"></div>
       </div>
 
-      {/* Header Moderno */}
-      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-gray-900/80 px-6 py-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-4">
+      {/* Enhanced Header */}
+      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'backdrop-blur-xl bg-gray-900/90 py-3 shadow-2xl shadow-blue-900/20' 
+          : 'backdrop-blur-sm bg-transparent py-4'
+      }`}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
+          <div className="flex items-center gap-4 group">
             <Image 
               src="/images/logo.png"
               alt="GW2 Logo"
               width={48} 
               height={48} 
-              className="rounded-full border-2 border-blue-400 hover:border-blue-300 transition-all duration-300" 
+              className="rounded-full border-2 border-blue-400 hover:border-blue-300 transition-all duration-500 transform group-hover:rotate-12 group-hover:scale-110" 
             />
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-size-200 animate-gradient-x text-transparent bg-clip-text">
               GW2
             </span>
           </div>
@@ -68,30 +86,39 @@ const Home = () => {
             href="https://discord.gg/gatitos2"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center px-6 py-2 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
+            className="group flex items-center px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-800 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 hover:from-blue-500 hover:to-blue-700"
           >
-            <FaDiscord className="mr-2 text-xl" />
-            <span>Únete Ahora</span>
-            <FaArrowRight className="ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
+            <FaDiscord className="mr-2 text-xl transform group-hover:scale-110 transition-transform duration-300" />
+            <span className="relative">
+              <span className="absolute -inset-1 w-full h-full bg-white/20 rounded-full blur-sm transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+              <span className="relative">Únete Ahora</span>
+            </span>
+            <FaArrowRight className="ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
           </a>
         </div>
       </header>
 
-      {/* Hero Section Mejorado */}
+      {/* Enhanced Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center">
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 via-gray-900/50 to-gray-900"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/95 via-gray-900/80 to-gray-900/95"></div>
+        </div>
+        
+        <div className="absolute inset-0 opacity-50">
+          <div className="absolute top-0 -left-4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+          <div className="absolute top-0 -right-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         </div>
         
         <div className="relative z-10 max-w-5xl mx-auto text-center px-6 pt-24">
           <h1 
-            className="text-6xl md:text-7xl font-black mb-6 bg-gradient-to-r from-white via-blue-300 to-blue-500 text-transparent bg-clip-text"
-            data-aos="fade-up"
+            className="text-6xl md:text-7xl font-black mb-6 bg-gradient-to-r from-white via-blue-300 to-blue-500 text-transparent bg-clip-text animate-gradient-x"
+            data-aos="zoom-in"
           >
             Bienvenido a GW2
           </h1>
           <p 
-            className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed"
             data-aos="fade-up" 
             data-aos-delay="100"
           >
@@ -106,25 +133,40 @@ const Home = () => {
               href="https://discord.gg/gatitos2"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium hover:from-blue-700 hover:to-blue-900 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 group"
+              className="relative group px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
             >
-              <span className="flex items-center">
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+              <span className="relative flex items-center">
+                <FaDiscord className="mr-2 text-xl" />
                 Únete a la Aventura
-                <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </a>
           </div>
         </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-scrolldown"></div>
+          </div>
+        </div>
       </section>
 
-      {/* Sobre Nosotros */}
-      <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Enhanced About Us Section */}
+      <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative">
+        <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] opacity-5"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-purple-600/5 to-pink-600/5"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 relative">
           <div className="text-center mb-16" data-aos="fade-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text">
+            <span className="inline-block px-4 py-2 bg-blue-900/30 rounded-full text-blue-400 text-sm font-medium mb-4">
+              SOBRE NOSOTROS
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-300 to-blue-500 text-transparent bg-clip-text">
               ¿Quiénes Somos?
             </h2>
-            <p className="text-lg text-gray-300 max-w-4xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
               Somos más que un servidor de Discord - somos una familia global unida por la pasión por los videojuegos y la amistad sincera.
             </p>
           </div>
@@ -135,53 +177,74 @@ const Home = () => {
                 title: "Eventos en Vivo",
                 description: "Participa en eventos exclusivos y transmisiones en vivo con nuestra comunidad.",
                 image: "/images/evento.png",
-                icon: "🎮"
+                icon: <FaGamepad className="text-4xl text-blue-400" />
               },
               {
                 title: "Contenido Premium",
                 description: "Accede a sorteos y contenido exclusivo creado especialmente para ti.",
                 image: "/images/sorteo.png",
-                icon: "🎁"
+                icon: <FaStar className="text-4xl text-yellow-400" />
               },
               {
                 title: "Comunidad Global",
                 description: "Conecta con personas de todo el mundo y forma parte de algo más grande.",
                 image: "/images/server.png",
-                icon: "🌍"
+                icon: <FaHeart className="text-4xl text-pink-400" />
               }
             ].map((item, index) => (
               <div 
                 key={index}
-                className="group relative overflow-hidden rounded-2xl bg-gray-800 p-6 hover:bg-gray-750 transition-all duration-300 transform hover:-translate-y-2"
+                className="group relative overflow-hidden rounded-2xl bg-gray-800/50 backdrop-blur-sm hover:bg-gray-750 transition-all duration-500 transform hover:-translate-y-2"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                <div className="mb-4 text-4xl">{item.icon}</div>
-                <Image 
-                  src={item.image}
-                  alt={item.title}
-                  width={500}
-                  height={300}
-                  className="w-full h-48 object-cover rounded-xl mb-6 transform group-hover:scale-105 transition-transform duration-300"
-                />
-                <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
-                <p className="text-gray-400">{item.description}</p>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                
+                <div className="p-6">
+                  <div className="mb-4 relative">
+                    <div className="absolute -inset-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
+                    {item.icon}
+                  </div>
+                  
+                  <div className="relative overflow-hidden rounded-xl mb-6">
+                    <Image 
+                      src={item.image}
+                      alt={item.title}
+                      width={500}
+                      height={300}
+                      className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors duration-300">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Estadísticas Mejoradas */}
+      {/* Enhanced Statistics Section */}
       <section className="py-24 bg-gray-800 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/images/stats-bg.jpg')] opacity-10 bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20"></div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text" data-aos="fade-up">
-            Nuestros Números
-          </h2>
+          <div className="text-center mb-16" data-aos="fade-up">
+            <span className="inline-block px-4 py-2 bg-blue-900/30 rounded-full text-blue-400 text-sm font-medium mb-4">
+              ESTADÍSTICAS
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text">
+              Nuestros Números
+            </h2>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -189,18 +252,21 @@ const Home = () => {
                 icon: <FaUsers className="text-5xl mb-4 text-blue-400" />, 
                 title: "Miembros Activos", 
                 value: members,
+                suffix: "+",
                 gradient: "from-blue-400 to-blue-600"
               },
               { 
                 icon: <FaUserShield className="text-5xl mb-4 text-purple-400" />, 
                 title: "Staff Dedicado", 
                 value: staff,
+                suffix: "",
                 gradient: "from-purple-400 to-purple-600"
               },
               { 
                 icon: <FaComments className="text-5xl mb-4 text-green-400" />, 
                 title: "Mensajes Compartidos", 
                 value: messages,
+                suffix: "k",
                 gradient: "from-green-400 to-green-600"
               }
             ].map((stat, index) => (
@@ -210,21 +276,26 @@ const Home = () => {
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-xl rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
-                <div className="relative backdrop-blur-sm bg-gray-900/90 rounded-3xl p-8 text-center transform hover:-translate-y-2 transition-all duration-300 border border-gray-700/50">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/50 to-purple-500/50 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-2xl rounded-3xl transform group-hover:scale-110 transition-transform duration-700"></div>
+                <div className="relative backdrop-blur-sm bg-gray-900/80 rounded-3xl p-8 text-center transform hover:-translate-y-2 transition-all duration-500 border border-gray-700/50">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                   <div className="relative z-10">
-                    <div className="flex justify-center mb-4">
+                    <div className="flex justify-center mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                       {stat.icon}
                     </div>
                     <h3 className="text-xl font-semibold mb-4 text-gray-100">{stat.title}</h3>
-                    <CountUp
-                      start={0}
-                      end={stat.value}
-                      duration={2.5}
-                      separator=","
-                      className={`text-5xl font-bold bg-gradient-to-r ${stat.gradient} text-transparent bg-clip-text`}
-                    />
+                    <div className="relative">
+                      <CountUp
+                        start={0}
+                        end={stat.value}
+                        duration={3}
+                        separator=","
+                        className={`text-5xl font-bold bg-gradient-to-r ${stat.gradient} text-transparent bg-clip-text`}
+                      />
+                      <span className={`text-2xl font-bold bg-gradient-to-r ${stat.gradient} text-transparent bg-clip-text ml-1`}>
+                        {stat.suffix}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -233,15 +304,20 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Beneficios VIP Mejorados */}
+      {/* Enhanced VIP Benefits Section */}
       <section className="py-24 bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/vip-bg.jpg')] opacity-10 bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-[url('/images/vip-bg.jpg')] opacity-5 bg-cover bg-center"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/10 via-yellow-500/10 to-orange-500/10"></div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-yellow-300 to-yellow-500 text-transparent bg-clip-text" data-aos="fade-up">
-            Experiencia VIP
-          </h2>
+          <div className="text-center mb-16" data-aos="fade-up">
+            <span className="inline-block px-4 py-2 bg-yellow-900/30 rounded-full text-yellow-400 text-sm font-medium mb-4">
+              BENEFICIOS VIP
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-yellow-500 text-transparent bg-clip-text">
+              Experiencia VIP
+            </h2>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
@@ -270,45 +346,51 @@ const Home = () => {
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
-                {/* Efecto de luz */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-white/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500"></div>
+                {/* Efecto de luz mejorado */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-white/30 via-yellow-500/30 to-white/30 opacity-0 group-hover:opacity-100 blur-2xl transition-all duration-700"></div>
                 
-                {/* Card Container */}
+                {/* Card Container mejorado */}
                 <div className="relative bg-gray-800/90 backdrop-blur-sm rounded-3xl overflow-hidden transform group-hover:-translate-y-2 transition-all duration-500">
-                  {/* Imagen Container con efecto curvo */}
+                  {/* Imagen Container con efecto mejorado */}
                   <div className="relative h-72 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/60 z-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/80 z-10 group-hover:opacity-50 transition-opacity duration-500"></div>
                     <Image 
                       src={benefit.image}
                       alt={benefit.title}
                       width={800}
                       height={600}
-                      className="w-full h-full object-cover transform scale-110 group-hover:scale-125 transition-transform duration-700 ease-out"
+                      className="w-full h-full object-cover transform scale-110 group-hover:scale-125 transition-transform duration-1000 ease-out"
                       style={{
                         clipPath: "polygon(0 0, 100% 0%, 100% 85%, 0% 100%)"
                       }}
                     />
-                    {/* Efecto de luz brillante */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+                    {/* Efecto de luz brillante mejorado */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20"></div>
                   </div>
                   
-                  {/* Contenido */}
+                  {/* Contenido mejorado */}
                   <div className="p-8 relative">
-                    {/* Línea decorativa */}
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+                    {/* Línea decorativa mejorada */}
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                     
-                    <h3 className={`text-2xl font-bold mb-3 bg-gradient-to-r ${benefit.gradient} text-transparent bg-clip-text`}>
+                    <h3 className={`text-2xl font-bold mb-3 bg-gradient-to-r ${benefit.gradient} text-transparent bg-clip-text transform group-hover:scale-105 transition-transform duration-300`}>
                       {benefit.title}
                     </h3>
                     <p className="text-gray-300 leading-relaxed">
                       {benefit.description}
                     </p>
                     
-                    {/* Botón sutil */}
+                    {/* Botón mejorado */}
                     <div className="mt-6">
-                      <a href="#" className="inline-flex items-center text-sm text-yellow-400 hover:text-yellow-300 transition-colors duration-300">
-                        Saber más
-                        <FaArrowRight className="ml-2 text-xs group-hover:translate-x-1 transition-transform duration-300" />
+                      <a 
+                        href="#" 
+                        className="inline-flex items-center text-sm text-yellow-400 hover:text-yellow-300 transition-colors duration-300 group/btn"
+                      >
+                        <span className="relative">
+                          <span className="absolute -inset-2 bg-yellow-400/20 rounded-lg blur-sm opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></span>
+                          <span className="relative">Saber más</span>
+                        </span>
+                        <FaArrowRight className="ml-2 text-xs transform group-hover/btn:translate-x-1 transition-transform duration-300" />
                       </a>
                     </div>
                   </div>
@@ -319,10 +401,18 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section className="py-24 bg-gradient-to-b from-gray-900 to-blue-900">
-        <div className="max-w-4xl mx-auto text-center px-6" data-aos="fade-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+      {/* Enhanced Final CTA */}
+      <section className="py-24 bg-gradient-to-b from-gray-900 to-blue-900 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 -left-4 w-96 h-96 bg-blue-500/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+          <div className="absolute bottom-0 -right-4 w-96 h-96 bg-purple-500/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+        
+        <div className="max-w-4xl mx-auto text-center px-6 relative z-10" data-aos="fade-up">
+          <span className="inline-block px-4 py-2 bg-blue-900/30 rounded-full text-blue-400 text-sm font-medium mb-4">
+            ÚNETE AHORA
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-300 to-blue-500 text-transparent bg-clip-text">
             ¿Listo para ser parte de algo especial?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
@@ -332,23 +422,77 @@ const Home = () => {
             href="https://discord.gg/gatitos2"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium hover:from-blue-700 hover:to-blue-900 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 group"
+            className="relative group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
           >
-            <FaDiscord className="mr-2 text-xl" />
-            <span>Únete Ahora</span>
-            <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-all duration-300" />
+            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+            <span className="relative flex items-center">
+              <FaDiscord className="mr-2 text-xl transform group-hover:scale-110 transition-transform duration-300" />
+              <span>Únete Ahora</span>
+              <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+            </span>
           </a>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 bg-gray-900 text-center">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} GW2 | Creado con 💙 para nuestra comunidad
+      {/* Enhanced Footer */}
+      <footer className="py-8 bg-gray-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent"></div>
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <p className="text-center text-gray-400">
+            &copy; {new Date().getFullYear()} GW2 | 
+            <span className="mx-2">Creado con</span>
+            <span className="inline-block animate-pulse text-red-400">❤️</span>
+            <span className="mx-2">para nuestra comunidad</span>
           </p>
         </div>
       </footer>
+
+      {/* Custom Animations CSS */}
+      <style jsx global>{`
+        @keyframes gradient-x {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes blob {
+          0% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+          100% { transform: translate(0px, 0px) scale(1); }
+        }
+        
+        @keyframes scrolldown {
+          0% { transform: translateY(0); opacity: 0; }
+          50% { transform: translateY(8px); opacity: 1; }
+          100% { transform: translateY(0); opacity: 0; }
+        }
+        
+        .animate-gradient-x {
+          animation: gradient-x 15s ease infinite;
+          background-size: 200% 200%;
+        }
+        
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+        
+        .animate-scrolldown {
+          animation: scrolldown 2s ease infinite;
+        }
+        
+        .bg-size-200 {
+          background-size: 200% 200%;
+        }
+      `}</style>
     </div>
   );
 };
