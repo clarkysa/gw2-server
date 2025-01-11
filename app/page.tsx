@@ -585,35 +585,21 @@ gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
         <span className="absolute top-0 right-0 -mt-2 -mr-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
       </GlowingButton>
 
-      
       {/* Custom Animations CSS */}
-      <style jsx>{`
-        div {
-          background-color: #f0f0f0;
-          padding: 20px;
-          text-align: center;
-        }
-
-        h1 {
-          color: #333;
-        }
-      `}</style>
-
-      {/* Global CSS for Animations */}
       <style jsx global>{`
         @keyframes gradient-x {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        
+
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
           100% { transform: translate(0px, 0px) scale(1); }
         }
-        
+
         @keyframes scrolldown {
           0% { transform: translateY(0); opacity: 0; }
           50% { transform: translateY(8px); opacity: 1; }
