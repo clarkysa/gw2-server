@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import AOS from 'aos';
 import Head from 'next/head';
 import './styles.css'; // Ajuste para la ruta correcta
 
 const Home = () => {
-  // Eliminado 'isScrolled' ya que no se usa
   useEffect(() => {
     AOS.init({
       duration: 1200,
@@ -15,15 +14,8 @@ const Home = () => {
       mirror: true,
     });
 
-    // Si planeas usar 'isScrolled', descomenta la siguiente línea
-    // const handleScroll = () => {
-    //   setIsScrolled(window.scrollY > 50);
-    // };
-    // window.addEventListener('scroll', handleScroll);
-    // window.scrollTo(0, 0);
-
     return () => {
-      // window.removeEventListener('scroll', handleScroll);
+      // Puedes poner aquí cualquier limpieza si es necesario
     };
   }, []);
 
