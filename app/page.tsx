@@ -381,15 +381,15 @@ const Home = () => {
           </div>
           
           <div className="text-center mt-12">
-            <Link href="reviews.tsx" passHref>
-              <button 
-                className="group relative inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
-              >
-                <span className="absolute inset-0 w-full h-full bg-white/30 transform -translate-x-full group-hover:translate-x-full transition-all duration-700 filter blur-sm"></span>
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400/50 to-blue-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                <span className="relative z-10">Ver más reseñas</span>
-              </button>
-            </Link>
+          <Link href="/reviews" passHref>
+            <button 
+              className="group relative inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
+            >
+              <span className="absolute inset-0 w-full h-full bg-white/30 transform -translate-x-full group-hover:translate-x-full transition-all duration-700 filter blur-sm"></span>
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400/50 to-blue-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+              <span className="relative z-10">Ver más reseñas</span>
+            </button>
+          </Link>
           </div>
         </div>
       </section>
