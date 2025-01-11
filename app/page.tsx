@@ -14,6 +14,7 @@ import AboutUs from 'AboutUs.tsx'; // Asegúrate de usar la ruta correcta
 import ScrollIndicator from 'ScrollIndicator.tsx'; // Asegúrate de usar la ruta correcta
 import HeroSection from 'HeroSection.tsx'; // Asegúrate de usar la ruta correcta
 import Header from 'Header.tsx'; // Asegúrate de usar la ruta correcta
+import VisualEffects from 'VisualEffects.tsx'; // Asegúrate de usar la ruta correcta
 import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments, FaStar, FaHeart, FaGamepad, FaTwitter, FaInstagram, FaTwitch, FaQuoteLeft } from 'react-icons/fa';
 import CountUp from 'react-countup';
 import Snowfall from 'react-snowfall';
@@ -131,23 +132,6 @@ const Home = () => {
       {/* Resto de tu componente */}
     </div>
   );
-
-      {/* Enhanced Visual Effects */}
-      <div className="fixed inset-0 z-0">
-        <Snowfall
-          snowflakeCount={200}
-          radius={[0.5, 3.0]}
-          speed={[0.5, 3.0]}
-          wind={[-0.5, 2.0]}
-          color="rgba(255, 255, 255, 0.2)"
-          style={{
-            position: 'fixed',
-            width: '100vw',
-            height: '100vh',
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/10 to-purple-900/10"></div>
-      </div>
 
 export default Home;
 
