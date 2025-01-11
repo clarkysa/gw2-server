@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
+import Head from 'next/head';
 import 'aos/dist/aos.css';
 import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments, FaStar, FaHeart, FaGamepad, FaTwitter, FaInstagram, FaTwitch, FaQuoteLeft } from 'react-icons/fa';
 import CountUp from 'react-countup';
