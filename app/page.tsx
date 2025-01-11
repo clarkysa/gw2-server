@@ -381,7 +381,7 @@ const Home = () => {
           </div>
           
           <div className="text-center mt-12">
-            <Link href="/reviews" passHref>
+            <Link href="./reviews" passHref>
               <button 
                 className="group relative inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
               >
