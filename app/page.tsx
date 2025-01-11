@@ -636,14 +636,3 @@ gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
 };
 
 export default Home;
-</merged_code_continuation>
-        .bg-size-200 {
-          background-size: 200% 200%;
-        }
-      `}</style>
-    </div>
-  );
-};
-
-export default Home;
-</merged_code_continuation>
