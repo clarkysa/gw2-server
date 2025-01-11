@@ -1,12 +1,84 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments, FaStar, FaHeart, FaGamepad } from 'react-icons/fa';
+import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments, FaStar, FaHeart, FaGamepad, FaTwitter, FaInstagram, FaTwitch, FaQuoteLeft } from 'react-icons/fa';
 import CountUp from 'react-countup';
 import Snowfall from 'react-snowfall';
 import Image from 'next/image';
+
+const GlowingButton = ({ children, href, className = '' }: { children: React.ReactNode, href: string, className?: string }) => {
+  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setGlowPosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
+
+  return (
+    <a
+      ref={buttonRef}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`relative group overflow-hidden ${className}`}
+      onMouseMove={handleMouseMove}
+    >
+      <div
+        className="absolute w-32 h-32 bg-white rounded-full opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-300"
+        style={{
+          left: `${glowPosition.x - 64}px`,
+          top: `${glowPosition.y - 64}px`,
+          transform: 'translate(-50%, -50%)',
+        }}
+      />
+      {children}
+    </a>
+  );
+};
+
+const InteractiveBackground = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      <div
+        className="absolute w-full h-full bg-gradient-radial from-blue-500/20 to-transparent"
+        style={{
+          transform: `translate(${mousePosition.x / 50}px, ${mousePosition.y / 50}px)`,
+          transition: 'transform 0.2s ease-out',
+        }}
+      />
+      <div
+        className="absolute w-full h-full bg-gradient-radial from-purple-500/20 to-transparent"
+        style={{
+          transform: `translate(${-mousePosition.x / 40}px, ${-mousePosition.y / 40}px)`,
+          transition: 'transform 0.3s ease-out',
+        }}
+      />
+      <div className="absolute inset-0 backdrop-blur-[100px]" />
+    </div>
+  );
+};
 
 const Home = () => {
   const [members] = useState<number>(22468);
@@ -18,8 +90,8 @@ const Home = () => {
     AOS.init({
       duration: 1200,
       easing: 'ease-out-cubic',
-      once: false, // Changed to false for repeated animations
-      mirror: true, // Enables animations when scrolling up
+      once: false,
+      mirror: true,
     });
 
     const handleScroll = () => {
@@ -38,7 +110,7 @@ const Home = () => {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Gatitos World 2 - La comunidad más acogedora de Discord" />
-        <meta property="og:image" content="URL_DE_LA_IMAGEN_AQUI" />
+        <meta property="og:image" content="/images/og-image.jpg" />
         <meta property="og:site_name" content="Gatitos World 2" />
         <meta name="robots" content="index, follow" />
         <link rel="icon" href="/favicon.ico" />
@@ -48,11 +120,11 @@ const Home = () => {
       {/* Enhanced Visual Effects */}
       <div className="fixed inset-0 z-0">
         <Snowfall
-          snowflakeCount={150}
+          snowflakeCount={200}
           radius={[0.5, 3.0]}
           speed={[0.5, 3.0]}
           wind={[-0.5, 2.0]}
-          color="rgba(255, 255, 255, 0.3)"
+          color="rgba(255, 255, 255, 0.2)"
           style={{
             position: 'fixed',
             width: '100vw',
@@ -70,47 +142,40 @@ const Home = () => {
       }`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
           <div className="flex items-center gap-4 group">
-            <Image 
-              src="/images/logo.png"
-              alt="GW2 Logo"
-              width={48} 
-              height={48} 
-              className="rounded-full border-2 border-blue-400 hover:border-blue-300 transition-all duration-500 transform group-hover:rotate-12 group-hover:scale-110" 
-            />
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <Image 
+                src="/images/logo.png"
+                alt="GW2 Logo"
+                width={48} 
+                height={48} 
+                className="relative rounded-full border-2 border-blue-400/50 hover:border-blue-300 transition-all duration-500 transform group-hover:rotate-12 group-hover:scale-110" 
+              />
+            </div>
             <span className="text-xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-size-200 animate-gradient-x text-transparent bg-clip-text">
               GW2
             </span>
           </div>
 
-          <a 
+          <GlowingButton 
             href="https://discord.gg/gatitos2"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-800 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 hover:from-blue-500 hover:to-blue-700"
+            className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-800 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
           >
-            <FaDiscord className="mr-2 text-xl transform group-hover:scale-110 transition-transform duration-300" />
-            <span className="relative">
-              <span className="absolute -inset-1 w-full h-full bg-white/20 rounded-full blur-sm transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-              <span className="relative">Únete Ahora</span>
+            <span className="flex items-center">
+              <FaDiscord className="mr-2 text-xl transform group-hover:scale-110 transition-transform duration-300" />
+              <span>Únete Ahora</span>
+              <FaArrowRight className="ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
             </span>
-            <FaArrowRight className="ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-          </a>
+          </GlowingButton>
         </div>
       </header>
 
-      {/* Enhanced Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center">
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/95 via-gray-900/80 to-gray-900/95"></div>
-        </div>
+      {/* Enhanced Hero Section with Interactive Background */}
+      <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <InteractiveBackground />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-gray-900/70 to-gray-900/80 z-10"></div>
         
-        <div className="absolute inset-0 opacity-50">
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-5xl mx-auto text-center px-6 pt-24">
+        <div className="relative z-20 max-w-5xl mx-auto text-center px-6 pt-24">
           <h1 
             className="text-6xl md:text-7xl font-black mb-6 bg-gradient-to-r from-white via-blue-300 to-blue-500 text-transparent bg-clip-text animate-gradient-x"
             data-aos="zoom-in"
@@ -129,24 +194,21 @@ const Home = () => {
             data-aos="fade-up" 
             data-aos-delay="200"
           >
-            <a
+            <GlowingButton
               href="https://discord.gg/gatitos2"
-              target="_blank"
-              rel="noopener noreferrer"
               className="relative group px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
             >
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
               <span className="relative flex items-center">
                 <FaDiscord className="mr-2 text-xl" />
                 Únete a la Aventura
                 <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
               </span>
-            </a>
+            </GlowingButton>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        {/* Enhanced Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-scrolldown"></div>
           </div>
@@ -154,7 +216,7 @@ const Home = () => {
       </section>
 
       {/* Enhanced About Us Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative">
+      <section id="sobre-nosotros" className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative">
         <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] opacity-5"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-purple-600/5 to-pink-600/5"></div>
         
@@ -305,7 +367,7 @@ const Home = () => {
       </section>
 
       {/* Enhanced VIP Benefits Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden">
+      <section id="beneficios-vip" className="py-24 bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/images/vip-bg.jpg')] opacity-5 bg-cover bg-center"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/10 via-yellow-500/10 to-orange-500/10"></div>
         
@@ -346,12 +408,9 @@ const Home = () => {
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
-                {/* Efecto de luz mejorado */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-white/30 via-yellow-500/30 to-white/30 opacity-0 group-hover:opacity-100 blur-2xl transition-all duration-700"></div>
                 
-                {/* Card Container mejorado */}
                 <div className="relative bg-gray-800/90 backdrop-blur-sm rounded-3xl overflow-hidden transform group-hover:-translate-y-2 transition-all duration-500">
-                  {/* Imagen Container con efecto mejorado */}
                   <div className="relative h-72 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/80 z-10 group-hover:opacity-50 transition-opacity duration-500"></div>
                     <Image 
@@ -364,13 +423,10 @@ const Home = () => {
                         clipPath: "polygon(0 0, 100% 0%, 100% 85%, 0% 100%)"
                       }}
                     />
-                    {/* Efecto de luz brillante mejorado */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20"></div>
                   </div>
                   
-                  {/* Contenido mejorado */}
                   <div className="p-8 relative">
-                    {/* Línea decorativa mejorada */}
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                     
                     <h3 className={`text-2xl font-bold mb-3 bg-gradient-to-r ${benefit.gradient} text-transparent bg-clip-text transform group-hover:scale-105 transition-transform duration-300`}>
@@ -380,10 +436,9 @@ const Home = () => {
                       {benefit.description}
                     </p>
                     
-                    {/* Botón mejorado */}
                     <div className="mt-6">
-                      <a 
-                        href="#" 
+                      <GlowingButton 
+                        href="#"
                         className="inline-flex items-center text-sm text-yellow-400 hover:text-yellow-300 transition-colors duration-300 group/btn"
                       >
                         <span className="relative">
@@ -391,8 +446,62 @@ const Home = () => {
                           <span className="relative">Saber más</span>
                         </span>
                         <FaArrowRight className="ml-2 text-xs transform group-hover/btn:translate-x-1 transition-transform duration-300" />
-                      </a>
+                      </GlowingButton>
                     </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* New Testimonials Section */}
+      <section id="testimonios" className="py-24 bg-gradient-to-b from-gray-900 to-blue-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/patterns/circuit-board.svg')] opacity-5"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-16" data-aos="fade-up">
+            <span className="inline-block px-4 py-2 bg-blue-900/30 rounded-full text-blue-400 text-sm font-medium mb-4">
+              TESTIMONIOS
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text">
+              Lo Que Dicen Nuestros Miembros
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Ana G.",
+                role: "Miembro desde 2021",
+                quote: "GW2 no es solo un servidor, es mi segunda familia. Aquí he encontrado amigos increíbles y momentos inolvidables.",
+              },
+              {
+                name: "Carlos M.",
+                role: "Moderador",
+                quote: "Como moderador, puedo decir que la comunidad de GW2 es única. El respeto y la camaradería que se vive aquí es incomparable.",
+              },
+              {
+                name: "Laura S.",
+                role: "Streamer Asociada",
+                quote: "Gracias a GW2, mi experiencia como streamer ha crecido exponencialmente. El apoyo de la comunidad es increíble.",
+              },
+            ].map((testimonial, index) => (
+              <div 
+                key={index}
+                className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 shadow-lg transform hover:-translate-y-2 transition-all duration-300"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
+                <FaQuoteLeft className="text-3xl text-blue-400 mb-4" />
+                <p className="text-gray-300 mb-4">{testimonial.quote}</p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full mr-4"></div>
+                  <div>
+                    <h4 className="font-semibold text-white">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-400">{testimonial.role}</p>
                   </div>
                 </div>
               </div>
@@ -418,41 +527,105 @@ const Home = () => {
           <p className="text-xl text-blue-100 mb-8">
             No esperes más para unirte a la comunidad más acogedora de Discord.
           </p>
-          <a
+          <GlowingButton
             href="https://discord.gg/gatitos2"
-            target="_blank"
-            rel="noopener noreferrer"
             className="relative group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
           >
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
             <span className="relative flex items-center">
               <FaDiscord className="mr-2 text-xl transform group-hover:scale-110 transition-transform duration-300" />
               <span>Únete Ahora</span>
               <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
             </span>
-          </a>
+          </GlowingButton>
         </div>
       </section>
 
       {/* Enhanced Footer */}
-      <footer className="py-8 bg-gray-900 relative overflow-hidden">
+      <footer className="py-12 bg-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-6 relative">
-          <p className="text-center text-gray-400">
-            &copy; {new Date().getFullYear()} GW2 | 
-            <span className="mx-2">Creado con</span>
-            <span className="inline-block animate-pulse text-red-400">❤️</span>
-            <span className="mx-2">para nuestra comunidad</span>
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <Image 
+                src="/images/logo.png"
+                alt="GW2 Logo"
+                width={64} 
+                height={64} 
+                className="mb-4"
+              />
+              <p className="text-gray-400 mb-4">
+                GW2 es más que un servidor de Discord. Somos una comunidad vibrante y acogedora, unida por la pasión por los videojuegos y la amistad.
+              </p>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+                  <FaTwitter size={24} />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+                  <FaInstagram size={24} />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+                  <FaTwitch size={24} />
+                </a>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4">Enlaces Rápidos</h3>
+              <ul className="space-y-2">
+                <li><a href="#inicio" className="text-gray-400 hover:text-white transition-colors duration-300">Inicio</a></li>
+                <li><a href="#sobre-nosotros" className="text-gray-400 hover:text-white transition-colors duration-300">Sobre Nosotros</a></li>
+                <li><a href="#beneficios-vip" className="text-gray-400 hover:text-white transition-colors duration-300">Beneficios VIP</a></li>
+                <li><a href="#testimonios" className="text-gray-400 hover:text-white transition-colors duration-300">Testimonios</a></li>
+              </ul>
+            </divduration-300">Testimonios</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4">Redes Sociales</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Twitter</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Instagram</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Twitch</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4">Contacto</h3>
+              <ul className="space-y-2">
+                <li className="text-gray-400">support@gw2.com</li>
+                <li className="text-gray-400">Discord: GW2#1234</li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-gray-800 text-center">
+            <p className="text-gray-400">
+              &copy; {new Date().getFullYear()} GW2 | 
+              <span className="mx-2">Creado con</span>
+              <span className="inline-block animate-pulse text-red-400">❤️</span>
+              <span className="mx-2">para nuestra comunidad</span>
+            </p>
+          </div>
         </div>
       </footer>
 
       {/* Custom Animations CSS */}
       <style jsx global>{`
         @keyframes gradient-x {
-          0% { background-position: 0% 50%; }
+          0%, 100% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes floating {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.05); }
+        }
+        
+        @keyframes sparkle {
+          0%, 100% { opacity: 0; transform: scale(0); }
+          50% { opacity: 1; transform: scale(1); }
         }
         
         @keyframes blob {
@@ -467,30 +640,39 @@ const Home = () => {
           50% { transform: translateY(8px); opacity: 1; }
           100% { transform: translateY(0); opacity: 0; }
         }
-        
+
         .animate-gradient-x {
           animation: gradient-x 15s ease infinite;
           background-size: 200% 200%;
         }
-        
+
         .animate-blob {
           animation: blob 7s infinite;
         }
-        
+
         .animation-delay-2000 {
           animation-delay: 2s;
         }
-        
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-        
+
         .animate-scrolldown {
-          animation: scrolldown 2s ease infinite;
+          animation: scrolldown 2s ease-in-out infinite;
         }
-        
-        .bg-size-200 {
-          background-size: 200% 200%;
+
+        @keyframes gradient-radial {
+          0% {
+            background-size: 100% 100%;
+          }
+          50% {
+            background-size: 120% 120%;
+          }
+          100% {
+            background-size: 100% 100%;
+          }
+        }
+
+        .bg-gradient-radial {
+          background: radial-gradient(circle, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 70%);
+          animation: gradient-radial 15s ease infinite;
         }
       `}</style>
     </div>
