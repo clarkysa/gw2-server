@@ -592,41 +592,41 @@ gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-
+        
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
           100% { transform: translate(0px, 0px) scale(1); }
         }
-
+        
         @keyframes scrolldown {
           0% { transform: translateY(0); opacity: 0; }
           50% { transform: translateY(8px); opacity: 1; }
           100% { transform: translateY(0); opacity: 0; }
         }
-
+        
         .animate-gradient-x {
           animation: gradient-x 15s ease infinite;
           background-size: 200% 200%;
         }
-
+        
         .animate-blob {
           animation: blob 7s infinite;
         }
-
+        
         .animation-delay-2000 {
           animation-delay: 2s;
         }
-
+        
         .animation-delay-4000 {
           animation-delay: 4s;
         }
-
+        
         .animate-scrolldown {
           animation: scrolldown 2s ease infinite;
         }
-
+        
         .bg-size-200 {
           background-size: 200% 200%;
         }
@@ -636,3 +636,14 @@ gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
 };
 
 export default Home;
+</merged_code_continuation>
+        .bg-size-200 {
+          background-size: 200% 200%;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default Home;
+</merged_code_continuation>
