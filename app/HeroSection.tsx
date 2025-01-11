@@ -2,7 +2,7 @@
 import React from 'react';
 import GlowingButton from './GlowingButton'; // Asegúrate de importar tu componente GlowingButton
 import { FaDiscord, FaArrowRight } from 'react-icons/fa';
-import InteractiveBackground from './InteractiveBackground.tsx'; // Importa el componente de fondo interactivo
+import InteractiveBackground from './InteractiveBackground'; // Importa el componente de fondo interactivo
 
 const HeroSection = () => {
   return (
