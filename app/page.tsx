@@ -3,17 +3,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
 import Head from 'next/head';
-import 'aos/dist/aos.css';
-import 'styles.css'; // Ajusta la ruta según tu estructura de directorios
-import Footer from './Footer.tsx';  // Asegúrate de usar la ruta correcta
-import FinalCTA from './FinalCTA.tsx'; // Asegúrate de usar la ruta correcta
-import Testimonials from './Testimonials.tsx'; // Asegúrate de usar la ruta correcta
-import Statistics from './Statistics.tsx'; // Asegúrate de usar la ruta correcta
-import AboutUs from './AboutUs.tsx'; // Asegúrate de usar la ruta correcta
-import ScrollIndicator from './ScrollIndicator.tsx'; // Asegúrate de usar la ruta correcta
-import HeroSection from './HeroSection.tsx'; // Asegúrate de usar la ruta correcta
-import Header from './Header.tsx'; // Asegúrate de usar la ruta correcta
-import VisualEffects from './VisualEffects.tsx'; // Asegúrate de usar la ruta correcta
+import './styles.css'; // Ajuste para la ruta correcta
+import Footer from './Footer.tsx';  // Ajuste para la ruta correcta
+import FinalCTA from './FinalCTA.tsx'; // Ajuste para la ruta correcta
+import Testimonials from './Testimonials.tsx'; // Ajuste para la ruta correcta
+import Statistics from './Statistics.tsx'; // Ajuste para la ruta correcta
+import AboutUs from './AboutUs.tsx'; // Ajuste para la ruta correcta
+import ScrollIndicator from './ScrollIndicator.tsx'; // Ajuste para la ruta correcta
+import HeroSection from './HeroSection.tsx'; // Ajuste para la ruta correcta
+import Header from './Header.tsx'; // Ajuste para la ruta correcta
+import VisualEffects from './VisualEffects.tsx'; // Ajuste para la ruta correcta
 import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments, FaStar, FaHeart, FaGamepad, FaTwitter, FaInstagram, FaTwitch, FaQuoteLeft } from 'react-icons/fa';
 import CountUp from 'react-countup';
 import Snowfall from 'react-snowfall';
@@ -127,21 +126,10 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
         <title>GW2 - Tu nuevo hogar en Discord</title>
       </Head>
-
-      {/* Aquí debes agregar el contenido del sitio */}
-      <HeroSection />
-      <Header />
-      <ScrollIndicator />
-      <AboutUs />
-      <Statistics />
-      <Testimonials />
-      <FinalCTA />
-      <Footer />
-      
-      <VisualEffects />
-      <InteractiveBackground />
+  
+      {/* Resto de tu componente */}
     </div>
   );
-};
+}
 
 export default Home;
