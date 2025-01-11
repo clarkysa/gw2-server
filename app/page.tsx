@@ -20,7 +20,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white font-inter overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 via-blue-700 to-blue-900 text-white font-inter overflow-hidden">
       {/* Metadata */}
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
