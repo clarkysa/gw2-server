@@ -13,7 +13,7 @@ const Reviews = () => {
     {
       id: 1,
       name: "Mystic",
-      photo: "/images/Mystic.jpg",
+      photo: "./images/Mystic.jpg",
       text: "Gane nitro en el, recomendado",
       rating: 5,
       memberSince: "3 meses",
