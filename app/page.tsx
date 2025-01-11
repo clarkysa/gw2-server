@@ -18,11 +18,11 @@ const Home = () => {
   const [reviews, setReviews] = useState([
     {
       id: 1,
-      name: "Alice",
-      photo: "/images/alice.jpg",
-      text: "GW2 es increíble! He hecho tantos amigos aquí.",
+      name: "Mystic",
+      photo: "/Mystic.jpg",
+      text: "Gane nitro en el, recomendado",
       rating: 5,
-      memberSince: "6 meses"
+      memberSince: "3 meses",
     },
     {
       id: 2,
