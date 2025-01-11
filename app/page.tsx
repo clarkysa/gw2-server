@@ -8,7 +8,7 @@ import CountUp from 'react-countup';
 import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
-import GlowingButton from './components/GlowingButton';
+import GlowingButton from '/components/GlowingButton';
 
 const Home = () => {
   const [members] = useState<number>(22468);
