@@ -5,6 +5,7 @@ import AOS from 'aos';
 import React from "react";
 import Head from 'next/head';
 import 'aos/dist/aos.css';
+import 'styles.css'; // Ajusta la ruta según tu estructura de directorios
 import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments, FaStar, FaHeart, FaGamepad, FaTwitter, FaInstagram, FaTwitch, FaQuoteLeft } from 'react-icons/fa';
 import CountUp from 'react-countup';
 import Snowfall from 'react-snowfall';
