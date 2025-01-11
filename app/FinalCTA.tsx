@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaDiscord, FaArrowRight } from 'react-icons/fa';
-import GlowingButton from './GlowingButton'; // Asegúrate de que el componente GlowingButton esté importado correctamente
+import GlowingButton from './GlowingButton';
 
 const FinalCTA = () => {
   return (
