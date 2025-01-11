@@ -524,65 +524,56 @@ const Home = () => {
         </div>
       </section>
 
-    {/* Enhanced Footer */}
-    <footer className="py-16 bg-gray-900 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent"></div>
-      <div className="max-w-7xl mx-auto px-6 relative">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <Image 
-              src="/images/logo.png"
-              alt="GW2 Logo"
-              width={64} 
-              height={64} 
-              className="rounded-full border-2 border-blue-400" 
-            />
-            <h3 className="text-xl font-bold">GW2</h3>
-            <p className="text-gray-400">La comunidad más acogedora de Discord</p>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
-            <ul className="space-y-2">
-              <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Inicio</Link></li>
-              <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">Sobre Nosotros</Link></li>
-              <li><Link href="/events" className="text-gray-400 hover:text-white transition-colors">Eventos</Link></li>
-              <li><Link href="/reviews" className="text-gray-400 hover:text-white transition-colors">Reseñas</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Reglas</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Soporte</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contacto</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaTwitter size={24} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaYoutube size={24} /></a>
+      {/* Enhanced Footer */}
+      <footer className="py-16 bg-gray-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent"></div>
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="space-y-4">
+              <Image 
+                src="/images/logo.png"
+                alt="GW2 Logo"
+                width={64} 
+                height={64} 
+                className="rounded-full border-2 border-blue-400" 
+              />
+              <h3 className="text-xl font-bold">GW2</h3>
+              <p className="text-gray-400">La comunidad más acogedora de Discord</p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
+              <ul className="space-y-2">
+                <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Inicio</Link></li>
+                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">Sobre Nosotros</Link></li>
+                <li><Link href="/events" className="text-gray-400 hover:text-white transition-colors">Eventos</Link></li>
+                <li><Link href="/reviews" className="text-gray-400 hover:text-white transition-colors">Reseñas</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Reglas</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Soporte</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contacto</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaTwitter size={24} /></a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaYoutube size={24} /></a>
+              </div>
             </div>
           </div>
+          <div className="mt-12 pt-8 border-t border-gray-800 text-center">
+            <p className="text-gray-400">
+              &copy; {new Date().getFullYear()} GW2 | Todos los derechos reservados
+            </p>
+          </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-gray-800 text-center">
-          <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} GW2 | Todos los derechos reservados
-          </p>
-        </div>
-      </div>
-    </footer>
-
-      {/* Floating Chat Button */}
-      <GlowingButton 
-        href="#"
-        className="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 z-50"
-      >
-        <FaComments className="text-2xl" />
-        <span className="absolute top-0 right-0 -mt-2 -mr-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
-      </GlowingButton>
+      </footer>
 
       {/* Custom Animations CSS */}
       <style jsx global>{`
@@ -591,41 +582,41 @@ const Home = () => {
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        
+
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
           66% { transform: translate(-20px, 20px) scale(0.9); }
           100% { transform: translate(0px, 0px) scale(1); }
         }
-        
+
         @keyframes scrolldown {
           0% { transform: translateY(0); opacity: 0; }
           50% { transform: translateY(8px); opacity: 1; }
           100% { transform: translateY(0); opacity: 0; }
         }
-        
+
         .animate-gradient-x {
           animation: gradient-x 15s ease infinite;
           background-size: 200% 200%;
         }
-        
+
         .animate-blob {
           animation: blob 7s infinite;
         }
-        
+
         .animation-delay-2000 {
           animation-delay: 2s;
         }
-        
+
         .animation-delay-4000 {
           animation-delay: 4s;
         }
-        
+
         .animate-scrolldown {
           animation: scrolldown 2s ease infinite;
         }
-        
+
         .bg-size-200 {
           background-size: 200% 200%;
         }
