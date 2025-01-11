@@ -108,7 +108,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white font-inter overflow-hidden">
       {/* Metadata */}
-      <head>
+      <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Gatitos World 2 - La comunidad más acogedora de Discord" />
         <meta property="og:image" content="/images/og-image.jpg" />
@@ -116,7 +116,11 @@ const Home = () => {
         <meta name="robots" content="index, follow" />
         <link rel="icon" href="/favicon.ico" />
         <title>GW2 - Tu nuevo hogar en Discord</title>
-      </head>
+      </Head>
+  
+      {/* Resto de tu componente */}
+    </div>
+  );
 
       {/* Enhanced Visual Effects */}
       <div className="fixed inset-0 z-0">
