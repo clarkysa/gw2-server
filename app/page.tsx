@@ -610,6 +610,9 @@ const Home = () => {
       </div>
     </footer>
 
+export default function Home() {
+  return (
+    <div>
       {/* Custom Animations CSS */}
       <style jsx global>{`
         @keyframes gradient-x {
