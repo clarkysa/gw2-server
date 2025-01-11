@@ -9,91 +9,8 @@ import FinalCTA from './FinalCTA.tsx'; // Ajuste para la ruta correcta
 import Testimonials from './Testimonials.tsx'; // Ajuste para la ruta correcta
 import Statistics from './Statistics.tsx'; // Ajuste para la ruta correcta
 import AboutUs from './AboutUs.tsx'; // Ajuste para la ruta correcta
-import ScrollIndicator from './ScrollIndicator.tsx'; // Ajuste para la ruta correcta
-import HeroSection from './HeroSection.tsx'; // Ajuste para la ruta correcta
-import Header from './Header.tsx'; // Ajuste para la ruta correcta
-import VisualEffects from './VisualEffects.tsx'; // Ajuste para la ruta correcta
-import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments, FaStar, FaHeart, FaGamepad, FaTwitter, FaInstagram, FaTwitch, FaQuoteLeft } from 'react-icons/fa';
-import CountUp from 'react-countup';
-import Snowfall from 'react-snowfall';
-import Image from 'next/image';
-
-const GlowingButton = ({ children, href, className = '' }: { children: React.ReactNode, href: string, className?: string }) => {
-  const buttonRef = useRef<HTMLAnchorElement>(null);
-  const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      setGlowPosition({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
-    }
-  };
-
-  return (
-    <a
-      ref={buttonRef}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`relative group overflow-hidden ${className}`}
-      onMouseMove={handleMouseMove}
-    >
-      <div
-        className="absolute w-32 h-32 bg-white rounded-full opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-300"
-        style={{
-          left: `${glowPosition.x - 64}px`,
-          top: `${glowPosition.y - 64}px`,
-          transform: 'translate(-50%, -50%)',
-        }}
-      />
-      {children}
-    </a>
-  );
-};
-
-const InteractiveBackground = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
-  return (
-    <div className="absolute inset-0 overflow-hidden">
-      <div
-        className="absolute w-full h-full bg-gradient-radial from-blue-500/20 to-transparent"
-        style={{
-          transform: `translate(${mousePosition.x / 50}px, ${mousePosition.y / 50}px)`,
-          transition: 'transform 0.2s ease-out',
-        }}
-      />
-      <div
-        className="absolute w-full h-full bg-gradient-radial from-purple-500/20 to-transparent"
-        style={{
-          transform: `translate(${-mousePosition.x / 40}px, ${-mousePosition.y / 40}px)`,
-          transition: 'transform 0.3s ease-out',
-        }}
-      />
-      <div className="absolute inset-0 backdrop-blur-[100px]" />
-    </div>
-  );
-};
 
 const Home = () => {
-  const [members] = useState<number>(22468);
-  const [staff] = useState<number>(50);
-  const [messages] = useState<number>(1461747);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -130,6 +47,6 @@ const Home = () => {
       {/* Resto de tu componente */}
     </div>
   );
-}
+};
 
 export default Home;
