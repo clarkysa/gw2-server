@@ -609,77 +609,78 @@ const Home = () => {
       </div>
     </footer>
 
-      {/* Custom Animations CSS */}
-      <style jsx global>{`
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-
-        @keyframes floating {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-
-        @keyframes pulse-glow {
-          0%, 100% { opacity: 0.5; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.05); }
-        }
-
-        @keyframes sparkle {
-          0%, 100% { opacity: 0; transform: scale(0); }
-          50% { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-
-        @keyframes scrolldown {
-          0% { transform: translateY(0); opacity: 0; }
-          50% { transform: translateY(8px); opacity: 1; }
-          100% { transform: translateY(0); opacity: 0; }
-        }
-
-        .animate-gradient-x {
-          animation: gradient-x 15s ease infinite;
-          background-size: 200% 200%;
-        }
-
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        .animate-scrolldown {
-          animation: scrolldown 2s ease-in-out infinite;
-        }
-
-        @keyframes gradient-radial {
-          0% {
-            background-size: 100% 100%;
-          }
-          50% {
-            background-size: 120% 120%;
-          }
-          100% {
-            background-size: 100% 100%;
-          }
-        }
-
-        .bg-gradient-radial {
-          background: radial-gradient(circle, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 70%);
-          animation: gradient-radial 15s ease infinite;
-        }
-      `}</style>
-    </div>
+  {/* Custom Animations CSS */}
+  <style jsx global>{`
+    @keyframes gradient-x {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+  
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+  
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+  
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+  
+    @keyframes blob {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+  
+    @keyframes scrolldown {
+      0% { transform: translateY(0); opacity: 0; }
+      50% { transform: translateY(8px); opacity: 1; }
+      100% { transform: translateY(0); opacity: 0; }
+    }
+  
+    .animate-gradient-x {
+      animation: gradient-x 15s ease infinite;
+      background-size: 200% 200%;
+    }
+  
+    .animate-blob {
+      animation: blob 7s infinite;
+    }
+  
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+  
+    .animate-scrolldown {
+      animation: scrolldown 2s ease-in-out infinite;
+    }
+  
+    @keyframes gradient-radial {
+      0% {
+        background-size: 100% 100%;
+      }
+      50% {
+        background-size: 120% 120%;
+      }
+      100% {
+        background-size: 100% 100%;
+      }
+    }
+  
+    .bg-gradient-radial {
+      background: radial-gradient(circle, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 70%);
+      animation: gradient-radial 15s ease infinite;
+    }
+  `}</style>
+  </div>
   );
 };
 
 export default Home;
+
