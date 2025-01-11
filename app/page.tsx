@@ -1,18 +1,12 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import Head from 'next/head';
 import './styles.css'; // Ajuste para la ruta correcta
-import Footer from './Footer.tsx';  // Ajuste para la ruta correcta
-import FinalCTA from './FinalCTA.tsx'; // Ajuste para la ruta correcta
-import Testimonials from './Testimonials.tsx'; // Ajuste para la ruta correcta
-import Statistics from './Statistics.tsx'; // Ajuste para la ruta correcta
-import AboutUs from './AboutUs.tsx'; // Ajuste para la ruta correcta
 
 const Home = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-
+  // Eliminado 'isScrolled' ya que no se usa
   useEffect(() => {
     AOS.init({
       duration: 1200,
@@ -21,14 +15,16 @@ const Home = () => {
       mirror: true,
     });
 
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    // Si planeas usar 'isScrolled', descomenta la siguiente línea
+    // const handleScroll = () => {
+    //   setIsScrolled(window.scrollY > 50);
+    // };
+    // window.addEventListener('scroll', handleScroll);
+    // window.scrollTo(0, 0);
+
+    return () => {
+      // window.removeEventListener('scroll', handleScroll);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    window.scrollTo(0, 0);
-
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
