@@ -11,6 +11,7 @@ import FinalCTA from 'FinalCTA.tsx'; // Asegúrate de usar la ruta correcta
 import Testimonials from 'Testimonials.tsx'; // Asegúrate de usar la ruta correcta
 import Statistics from 'Statistics.tsx'; // Asegúrate de usar la ruta correcta
 import AboutUs from 'AboutUs.tsx'; // Asegúrate de usar la ruta correcta
+import ScrollIndicator from 'ScrollIndicator.tsx'; // Asegúrate de usar la ruta correcta
 import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments, FaStar, FaHeart, FaGamepad, FaTwitter, FaInstagram, FaTwitch, FaQuoteLeft } from 'react-icons/fa';
 import CountUp from 'react-countup';
 import Snowfall from 'react-snowfall';
@@ -218,14 +219,6 @@ const Home = () => {
             </GlowingButton>
           </div>
         </div>
-
-        {/* Enhanced Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-scrolldown"></div>
-          </div>
-        </div>
-      </section>
 
 export default Home;
 
