@@ -9,6 +9,7 @@ import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
 import GlowingButton from './GlowingButton';
+import AdvancedChat from './components/AdvancedChat';
 
 const Home = () => {
   const [members] = useState<number>(22468);
@@ -488,6 +489,21 @@ const Home = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Advanced Chat Section */}
+      <section className="py-24 bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-16" data-aos="fade-up">
+            <span className="inline-block px-4 py-2 bg-blue-900/30 rounded-full text-blue-400 text-sm font-medium mb-4">
+              CHAT EN VIVO
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-300 to-blue-500 text-transparent bg-clip-text">
+              Únete a la conversación
+            </h2>
+          </div>
+          <AdvancedChat />
         </div>
       </section>
 
