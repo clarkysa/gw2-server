@@ -10,6 +10,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import GlowingButton from './GlowingButton';
 import AdvancedChat from './components/AdvancedChat';
+import OnlineChat from './components/OnlineChat';
 
 const Home = () => {
   const [members] = useState<number>(22468);
@@ -503,7 +504,7 @@ const Home = () => {
               Únete a la conversación
             </h2>
           </div>
-          <AdvancedChat />
+          <OnlineChat />
         </div>
       </section>
 
@@ -563,6 +564,10 @@ const Home = () => {
                 <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">Sobre Nosotros</Link></li>
                 <li><Link href="/events" className="text-gray-400 hover:text-white transition-colors">Eventos</Link></li>
                 <li><Link href="/reviews" className="text-gray-400 hover:text-white transition-colors">Reseñas</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 classNameli>
               </ul>
             </div>
             <div>
