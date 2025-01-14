@@ -9,6 +9,7 @@ import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
 import GlowingButton from './GlowingButton';
+import Head from 'next/head'; // Componente de Next.js para manejar el <head>
 
 const Home = () => {
   const [members] = useState<number>(22468);
@@ -18,28 +19,28 @@ const Home = () => {
   const [reviews, setReviews] = useState([
     {
       id: 1,
-      name: "Mystic",
-      photo: "/Mystic.jpg",
-      text: "Gane nitro en el, recomendado",
+      name: 'Mystic',
+      photo: '/Mystic.jpg',
+      text: 'Gane nitro en el, recomendado',
       rating: 5,
-      memberSince: "3 meses",
+      memberSince: '3 meses',
     },
     {
       id: 2,
-      name: "Bob",
-      photo: "/images/bob.jpg",
-      text: "Los eventos son super divertidos. Nunca me los pierdo!",
+      name: 'Bob',
+      photo: '/images/bob.jpg',
+      text: 'Los eventos son super divertidos. Nunca me los pierdo!',
       rating: 4,
-      memberSince: "1 año"
+      memberSince: '1 año',
     },
     {
       id: 3,
-      name: "Charlie",
-      photo: "/images/charlie.jpg",
-      text: "La comunidad es muy acogedora. Me siento como en casa.",
+      name: 'Charlie',
+      photo: '/images/charlie.jpg',
+      text: 'La comunidad es muy acogedora. Me siento como en casa.',
       rating: 5,
-      memberSince: "3 meses"
-    }
+      memberSince: '3 meses',
+    },
   ]);
 
   useEffect(() => {
@@ -61,15 +62,17 @@ const Home = () => {
   }, []);
 
   const handleRating = (reviewId: number, newRating: number) => {
-    setReviews(reviews.map(review => 
-      review.id === reviewId ? {...review, rating: newRating} : review
-    ));
+    setReviews((prevReviews) =>
+      prevReviews.map((review) =>
+        review.id === reviewId ? { ...review, rating: newRating } : review
+      )
+    );
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white font-inter overflow-hidden">
       {/* Metadata */}
-      <head>
+      <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Gatitos World 2 - La comunidad más acogedora de Discord" />
         <meta property="og:image" content="URL_DE_LA_IMAGEN_AQUI" />
@@ -77,8 +80,7 @@ const Home = () => {
         <meta name="robots" content="index, follow" />
         <link rel="icon" href="/favicon.ico" />
         <title>GW2 - Tu nuevo hogar en Discord</title>
-        <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
-      </head>
+      </Head>
 
       {/* Enhanced Visual Effects */}
       <div className="fixed inset-0 z-0">
@@ -96,6 +98,9 @@ const Home = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/10 to-purple-900/10"></div>
       </div>
+    </div>
+  );
+};
 
       {/* Enhanced Header */}
       <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
