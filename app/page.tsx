@@ -11,14 +11,6 @@ import Link from 'next/link';
 import GlowingButton from './GlowingButton';
 import { JSX } from 'react';
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'widgetbot': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-    }
-  }
-}
-
 const Home = () => {
   const [members] = useState<number>(22468);
   const [staff] = useState<number>(50);
@@ -519,13 +511,18 @@ const Home = () => {
           <div className="relative" data-aos="zoom-in">
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl"></div>
             <div className="relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 shadow-2xl">
-              <widgetbot
-                server="299881420891881473"
-                channel="355719584830980096"
-                width="100%"
-                height="600"
+              {/* Use a div instead of the custom widgetbot element */}
+              <div
                 className="rounded-xl overflow-hidden"
-              ></widgetbot>
+                style={{ width: '100%', height: '600px' }}
+              >
+                <iframe
+                  src="https://e.widgetbot.io/channels/299881420891881473/355719584830980096"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
