@@ -9,6 +9,7 @@ import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
 import GlowingButton from './GlowingButton';
+import { JSX } from 'react';
 import Head from 'next/head'; // Componente de Next.js para manejar el <head>
 
 const Home = () => {
