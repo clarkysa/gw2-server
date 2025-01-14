@@ -11,6 +11,7 @@ import Link from 'next/link';
 import GlowingButton from './GlowingButton';
 import { JSX } from 'react';
 import Head from 'next/head'; // Componente de Next.js para manejar el <head>
+import './animations.css';
 
 const Home = () => {
   const [members] = useState<number>(22468);
@@ -616,55 +617,5 @@ const Home = () => {
         </div>
       </div>
     </footer>
-
-      {/* Custom Animations CSS */}
-      <style jsx global>{`
-        @keyframes gradient-x {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-
-        @keyframes scrolldown {
-          0% { transform: translateY(0); opacity: 0; }
-          50% { transform: translateY(8px); opacity: 1; }
-          100% { transform: translateY(0); opacity: 0; }
-        }
-
-        .animate-gradient-x {
-          animation: gradient-x 15s ease infinite;
-          background-size: 200% 200%;
-        }
-
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-
-        .animate-scrolldown {
-          animation: scrolldown 2s ease infinite;
-        }
-
-        .bg-size-200 {
-          background-size: 200% 200%;
-        }
-      `}</style>
-    </div>
-  );
-};
 
 export default Home;
