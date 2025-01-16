@@ -465,7 +465,7 @@ export default function HomePage() {
               style: "border-cyan-500/20 bg-gradient-to-b from-cyan-950/50 to-transparent",
               nameStyle: "text-cyan-400",
               buttonStyle: "bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400",
-              link: "https://discord.gg/gatitos-diamond", // Enlace actualizado
+              link: "https://discord.gg/gatitos-diamond",
               popular: true
             },
             {
@@ -486,9 +486,9 @@ export default function HomePage() {
               link: "https://discord.gg/gatitos-elite"
             }
           ].map((tier, index) => (
-            <Card 
+            <Card
               key={index}
-              className={`relative border ${tier.style} backdrop-blur-sm`}
+              className={`relative border ${tier.style} backdrop-blur-sm flex flex-col`}
             >
               {tier.popular && (
                 <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-pink-500">
@@ -500,7 +500,7 @@ export default function HomePage() {
                   {tier.name}
                 </h3>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6 flex-grow">
                 <div className="text-center">
                   <span className="text-4xl font-bold">${tier.price}</span>
                   <span className="text-gray-400">/mes</span>
@@ -513,10 +513,10 @@ export default function HomePage() {
                   ))}
                 </ul>
               </CardContent>
-              <CardFooter>
-                <Button 
+              <CardFooter className="mt-auto">
+                <Button
                   className={`w-full ${tier.buttonStyle}`}
-                  onClick={() => window.open(tier.link, '_blank')} // Se abre el enlace específico de cada tier
+                  onClick={() => window.open(tier.link, '_blank')}
                 >
                   Súmate
                 </Button>
