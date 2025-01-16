@@ -9,7 +9,7 @@ import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
-import { VIPBenefits } from './VIPBenefits';
+import { VIPBenefits } from '../components/VIPBenefits';
 
 const GlowingButton: React.FC<{ href: string; className?: string; children: React.ReactNode }> = ({ href, className, children }) => (
   <Link href={href} passHref>
@@ -421,6 +421,89 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Enhanced Patreon Section */}
+      <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/patterns/circuit-board.svg')] opacity-5"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 via-pink-600/10 to-red-600/10"></div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-16" data-aos="fade-up">
+            <span className="inline-block px-4 py-2 bg-purple-900/30 rounded-full text-purple-400 text-sm font-medium mb-4">
+              APÓYANOS EN PATREON
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+              Conviértete en Patrocinador
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {[
+              {
+                title: "Tier Bronce",
+                price: "5€",
+                benefits: [
+                  "Rol exclusivo en Discord",
+                  "Acceso a canales exclusivos",
+                  "Emojis personalizados"
+                ],
+                color: "from-yellow-600 to-yellow-400"
+              },
+              {
+                title: "Tier Plata",
+                price: "10€",
+                benefits: [
+                  "Todos los beneficios de Bronce",
+                  "Prioridad en eventos",
+                  "Sorteos mensuales exclusivos"
+                ],
+                color: "from-gray-400 to-gray-200"
+              },
+              {
+                title: "Tier Oro",
+                price: "20€",
+                benefits: [
+                  "Todos los beneficios de Plata",
+                  "Participación en la toma de decisiones",
+                  "Merchandise exclusivo anual"
+                ],
+                color: "from-yellow-400 to-yellow-200"
+              }
+            ].map((tier, index) => (
+              <Card key={index} className="bg-gray-800/50 backdrop-blur-sm border-gray-700 overflow-hidden">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-bold text-center">
+                    <span className={`bg-gradient-to-r ${tier.color} text-transparent bg-clip-text`}>
+                      {tier.title}
+                    </span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-3xl font-bold text-center mb-6">{tier.price}<span className="text-sm font-normal">/mes</span></p>
+                  <ul className="space-y-2">
+                    {tier.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-center">
+                        <svg className="w-4 h-4 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span className="text-gray-300">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button className="w-full bg-purple-600 hover:bg-purple-700">Seleccionar</Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="https://www.patreon.com/gw2community" className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-medium text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105">
+              Ver más en Patreon
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Enhanced Final CTA */}
       <section className="py-24 bg-gradient-to-b from-gray-900 to-blue-900 relative overflow-hidden">
         <div className="absolute inset-0">
@@ -483,7 +566,7 @@ export default function HomePage() {
               <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
               <ul className="space-y-2">
                 <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
-                <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Soporte</Link></li>
+                <lihover:text-white transition-colors">Soporte</Link></li>
                 <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contacto</Link></li>
                 <li><Link href="/rules" className="text-gray-400 hover:text-white transition-colors">Reglas</Link></li>
               </ul>
