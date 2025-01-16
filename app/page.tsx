@@ -52,6 +52,11 @@ const reviews = [
   },
 ];
 
+export const metadata = {
+  title: "GW2 | Pagina Inicial",
+  description: "Bienvenido al mundo de los gatitos nwn.",
+};
+
 export default function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { ref, inView } = useInView({
@@ -73,11 +78,6 @@ export default function HomePage() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-export const metadata = {
-  title: "GW2 | Pagina Inicial",
-  description: "Bienvenido al mundo de los gatitos nwn.",
-};
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white font-inter overflow-hidden">
