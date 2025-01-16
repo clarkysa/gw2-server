@@ -50,6 +50,20 @@ const reviews = [
   },
 ];
 
+const HomePage: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScrollPosition();
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+    window.addEventListener('scroll', () => {
+      setIsScrolled(window.scrollY > 50);
+    });
+    return () => {
+      window.removeEventListener('scroll', () => {});
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white font-inter overflow-hidden">
       {/* Enhanced Visual Effects */}
