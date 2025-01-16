@@ -49,7 +49,7 @@ const reviews = [
   },
 ];
 
-export default function HomePage() {
+const HomePage: React.FC = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const { ref, inView } = useInView({
     threshold: 0.1,
