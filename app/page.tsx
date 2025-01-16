@@ -52,11 +52,6 @@ const reviews = [
   },
 ];
 
-export const metadata = {
-  title: "GW2 | Pagina Inicial",
-  description: "Bienvenido al mundo de los gatitos nwn.",
-};
-
 export default function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { ref, inView } = useInView({
