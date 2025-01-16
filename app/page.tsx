@@ -10,7 +10,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { VIPBenefits } from './VIPBenefits';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./components/Card";
+import { Card, CardContent, CardFooter, CardHeader } from "./components/Card";
 import { Button } from "./components/Button";
 import { Badge } from "./components/Badge";
 
@@ -583,7 +583,7 @@ export default function HomePage() {
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
+              <h4 className="textlg font-semibold mb-4">Comunidad</h4>
               <ul className="space-y-2">
                 <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
                 <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Soporte</Link></li>
@@ -616,3 +616,4 @@ export default function HomePage() {
     </div>
   );
 }
+
