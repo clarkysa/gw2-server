@@ -7,7 +7,8 @@ interface ButtonProps {
   onClick?: () => void; // Función opcional que se ejecuta al hacer clic
 }
 
-const Button: React.FC<ButtonProps> = ({ children, className, onClick }) => {
+// Exportación nombrada de Button
+export const Button: React.FC<ButtonProps> = ({ children, className, onClick }) => {
   return (
     <button
       onClick={onClick}
@@ -17,5 +18,3 @@ const Button: React.FC<ButtonProps> = ({ children, className, onClick }) => {
     </button>
   );
 };
-
-export default Button; // Asegúrate de exportar el componente por defecto
