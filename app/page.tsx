@@ -453,6 +453,7 @@ export default function HomePage() {
               link: "https://www.patreon.com/checkout/GW2?rid=24029425"
             },
             {
+            {
               name: "Diamond",
               price: "5.99",
               features: [
@@ -462,9 +463,9 @@ export default function HomePage() {
                 "💰 Opción de reclamar 2 millones (incluidos los niveles anteriores) en moneda del servidor.",
                 "Acceso a Discord"
               ],
-              style: "border-cyan-500/20 bg-gradient-to-b from-cyan-950/50 to-transparent",
-              nameStyle: "text-cyan-400",
-              buttonStyle: "bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400",
+              style: "border-blue-500/30 bg-gradient-to-b from-blue-800/70 via-blue-600/50 to-blue-400/30",
+              nameStyle: "text-blue-400",
+              buttonStyle: "bg-blue-500/20 hover:bg-blue-500/30 text-blue-400",
               link: "https://www.patreon.com/checkout/GW2?rid=24031413",
               popular: true
             },
