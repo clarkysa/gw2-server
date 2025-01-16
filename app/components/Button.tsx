@@ -2,20 +2,20 @@
 import React from 'react';
 
 interface ButtonProps {
-  children: React.ReactNode; // Aceptar el contenido dentro del botón
-  className?: string; // Opcional, clases adicionales para estilos
-  onClick?: () => void; // Acción opcional para manejar clics
+  children: React.ReactNode; // Acepta cualquier tipo de contenido como hijos
+  className?: string; // Clases CSS opcionales
+  onClick?: () => void; // Función opcional que se ejecuta al hacer clic
 }
 
 const Button: React.FC<ButtonProps> = ({ children, className, onClick }) => {
   return (
-    <button 
-      onClick={onClick} 
-      className={`px-6 py-3 rounded-full text-white ${className}`} // Aplica las clases adicionales
+    <button
+      onClick={onClick}
+      className={`px-6 py-3 rounded-full text-white ${className}`} // Aplica clases adicionales
     >
-      {children} {/* Contenido dentro del botón */}
+      {children} {/* Renderiza los hijos dentro del botón */}
     </button>
   );
 };
 
-export default Button; // Exportación por defecto
+export default Button; // Asegúrate de exportar el componente por defecto
