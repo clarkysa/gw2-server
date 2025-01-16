@@ -1,19 +1,17 @@
-// components/Button.tsx
-
+// src/components/Button.tsx
 import React from 'react';
 
 interface ButtonProps {
-  onClick?: () => void;
-  href?: string;
-  className?: string;
   children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, href, className, children }) => {
+const Button: React.FC<ButtonProps> = ({ children, className, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={`py-2 px-4 bg-blue-500 text-white rounded-lg transition-all duration-200 hover:bg-blue-600 ${className}`}
+      className={`px-6 py-3 rounded-full text-white ${className}`}
     >
       {children}
     </button>
