@@ -9,7 +9,7 @@ import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
-import { VIPBenefits } from './VIPBenefits';
+import { VIPBenefits } from '../components/VIPBenefits';
 import { Card, CardContent, CardFooter, CardHeader } from "./components/Card";
 import { Button } from "./components/Button";
 import { Badge } from "./components/Badge";
