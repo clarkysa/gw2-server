@@ -1,30 +1,22 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
 
-const AboutPage: React.FC = () => {
+export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white py-16 px-4">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">About GW2</h1>
-        <p className="text-lg mb-6">
-          Gatitos World 2 (GW2) is a vibrant and welcoming Discord community that brings together
-          people from all walks of life who share a passion for gaming, friendship, and fun.
-        </p>
-        <p className="text-lg mb-6">
-          Founded with the vision of creating a safe and inclusive space for everyone, GW2 has grown
-          into a thriving ecosystem of gamers, content creators, and social butterflies.
-        </p>
-        <p className="text-lg mb-6">
-          Our community is built on the principles of respect, support, and camaraderie. Whether
-          you're here to find gaming partners, engage in lively discussions, or simply to make new
-          friends, GW2 has something for everyone.
-        </p>
-        <Link href="/" className="text-blue-400 hover:underline">
-          Back to Home
-        </Link>
-      </div>
+    <div className="min-h-screen bg-gray-900 text-white p-8">
+      <h1 className="text-4xl font-bold mb-6">Sobre Nosotros</h1>
+      <p className="mb-4">
+        GW2 es una comunidad vibrante y acogedora de jugadores apasionados. Nos dedicamos a crear un espacio donde los gamers pueden conectarse, compartir experiencias y disfrutar juntos.
+      </p>
+      <p className="mb-4">
+        Fundada en [año], nuestra comunidad ha crecido hasta convertirse en un hogar digital para miles de jugadores de todo el mundo. Nuestro objetivo es fomentar un ambiente inclusivo y divertido donde cada miembro pueda sentirse valorado y apoyado.
+      </p>
+      <p className="mb-4">
+        En GW2, creemos en el poder de los videojuegos para unir a las personas. Organizamos eventos regulares, torneos y actividades sociales para mantener nuestra comunidad activa y comprometida.
+      </p>
+      <Link href="/" className="text-blue-400 hover:underline">
+        Volver a la página principal
+      </Link>
     </div>
-  )
+  );
 }
-
-export default AboutPage
