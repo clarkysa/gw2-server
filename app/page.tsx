@@ -3,14 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments, FaStar, FaHeart, FaGamepad, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
-import CountUp from 'react-countup';
+import { FaDiscord, FaArrowRight, FaGamepad, FaStar, FaHeart } from 'react-icons/fa';
 import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useInView } from 'react-intersection-observer';
-import { useScrollPosition } from './useScrollPosition';
-import { VIPBenefits } from './VIPBenefits';
 
 const GlowingButton: React.FC<{ href: string; className?: string; children: React.ReactNode }> = ({ href, className, children }) => (
   <Link href={href} passHref>
@@ -52,7 +48,6 @@ const reviews = [
 
 const HomePage: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { scrollY } = useScrollPosition();
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
