@@ -234,9 +234,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
-}
 
       {/* Enhanced Statistics Section */}
       <section className="py-24 bg-gray-800 relative overflow-hidden" ref={ref}>
