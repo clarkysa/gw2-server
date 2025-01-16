@@ -1,13 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
-
-// Definir las propiedades de la tarjeta (Card)
-interface CardProps {
-  title: string;
-  description: string;
-  imageUrl: string;
-  link: string;
-}
 
 // Subcomponente CardHeader
 export const CardHeader: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -30,9 +21,9 @@ export const CardFooter: React.FC<{ children: React.ReactNode }> = ({ children }
 );
 
 // Componente Card
-const Card: React.FC<CardProps> = ({ title, description, imageUrl, link }) => (
+const Card: React.FC<{ title: string; description: string; imageUrl: string; link: string }> = ({ title, description, imageUrl, link }) => (
   <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300">
-    <Image src={imageUrl} alt={title} width={400} height={300} className="w-full object-cover" />
+    <img src={imageUrl} alt={title} className="w-full object-cover" />
     <div className="px-6 py-4">
       <CardHeader>{title}</CardHeader>
       <CardContent>{description}</CardContent>
@@ -43,4 +34,4 @@ const Card: React.FC<CardProps> = ({ title, description, imageUrl, link }) => (
   </div>
 );
 
-export default Card; // Exportar el componente Card por defecto
+export default Card; // Exportar como por defecto
