@@ -1,28 +1,23 @@
+// components/Button.tsx
+
 import React from 'react';
 
 interface ButtonProps {
-  children: React.ReactNode;
-  href?: string;
   onClick?: () => void;
+  href?: string;
   className?: string;
+  children: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, href, onClick, className }) => {
-  const buttonClass = `inline-flex items-center justify-center px-6 py-3 text-white bg-blue-500 rounded-full hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all duration-300 ${className}`;
-
-  if (href) {
-    return (
-      <a href={href} className={buttonClass}>
-        {children}
-      </a>
-    );
-  }
-
+const Button: React.FC<ButtonProps> = ({ onClick, href, className, children }) => {
   return (
-    <button onClick={onClick} className={buttonClass}>
+    <button
+      onClick={onClick}
+      className={`py-2 px-4 bg-blue-500 text-white rounded-lg transition-all duration-200 hover:bg-blue-600 ${className}`}
+    >
       {children}
     </button>
   );
 };
 
-export default Button; // Exportación por defecto
+export default Button;
