@@ -23,53 +23,33 @@ const GlowingButton: React.FC<{ href: string; className?: string; children: Reac
   </Link>
 );
 
-const Home: React.FC = () => {
-  const [members] = useState<number>(22468);
-  const [staff] = useState<number>(50);
-  const [messages] = useState<number>(1461);
-  const isScrolled = useScrollPosition();
-  const [reviews, setReviews] = useState([
-    {
-      id: 1,
-      name: 'Mystic',
-      photo: '/Mystic.jpg',
-      text: 'Gane nitro en el, recomendado',
-      rating: 5,
-      memberSince: '3 meses',
-    },
-    {
-      id: 2,
-      name: 'Bob',
-      photo: '/images/bob.jpg',
-      text: 'Los eventos son super divertidos. Nunca me los pierdo!',
-      rating: 4,
-      memberSince: '1 año',
-    },
-    {
-      id: 3,
-      name: 'Charlie',
-      photo: '/images/charlie.jpg',
-      text: 'La comunidad es muy acogedora. Me siento como en casa.',
-      rating: 5,
-      memberSince: '3 meses',
-    },
-  ]);
-
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  useEffect(() => {
-    AOS.init({
-      duration: 1200,
-      easing: 'ease-out-cubic',
-      once: false,
-      mirror: true,
-    });
-
-    window.scrollTo(0, 0);
-  }, []);
+// En el componente Home o en otros lugares, reemplaza comillas simples dentro de las cadenas por entidades HTML
+const reviews = [
+  {
+    id: 1,
+    name: 'Mystic',
+    photo: '/Mystic.jpg',
+    text: 'Gane nitro en el, recomendado'.replace("'", "&#39;"),  // Se escapa la comilla simple
+    rating: 5,
+    memberSince: '3 meses',
+  },
+  {
+    id: 2,
+    name: 'Bob',
+    photo: '/images/bob.jpg',
+    text: 'Los eventos son super divertidos. Nunca me los pierdo!',
+    rating: 4,
+    memberSince: '1 año',
+  },
+  {
+    id: 3,
+    name: 'Charlie',
+    photo: '/images/charlie.jpg',
+    text: 'La comunidad es muy acogedora. Me siento como en casa.',
+    rating: 5,
+    memberSince: '3 meses',
+  },
+];
 
   const handleRating = (reviewId: number, newRating: number) => {
     setReviews((prevReviews) =>
