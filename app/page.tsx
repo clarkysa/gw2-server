@@ -12,7 +12,6 @@ import { useInView } from 'react-intersection-observer';
 import { useScrollPosition } from './useScrollPosition';
 import { VIPBenefits } from './VIPBenefits';
 
-// GlowingButton component
 const GlowingButton: React.FC<{ href: string; className?: string; children: React.ReactNode }> = ({ href, className, children }) => (
   <Link href={href} passHref>
     <span className={`relative inline-flex group ${className}`}>
