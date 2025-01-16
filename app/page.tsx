@@ -503,7 +503,10 @@ export default function HomePage() {
           </p>
           {/* Aquí agregamos el texto "Codificado por Junsred" con enlace */}
           <p className="text-gray-400 mt-4">
-            <span>&#60;&#47;&#62;</span> Codificado por <a href="https://github.com/junsred" target="_blank" className="text-blue-400 hover:underline">Junsred</a>
+            <span>&#60;&#47;&#62;</span> Codificado por 
+            <a href="https://github.com/junsred" target="_blank" className="text-blue-400 hover:underline">
+              Junsred
+            </a>
           </p>
         </div>
       </div>
