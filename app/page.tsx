@@ -3,10 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaDiscord, FaArrowRight, FaGamepad, FaStar, FaHeart } from 'react-icons/fa';
+import { FaDiscord, FaArrowRight, FaUsers, FaUserShield, FaComments, FaStar, FaHeart, FaGamepad, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';  // Reagregando las importaciones correctas
+import CountUp from 'react-countup';  // Reagregando CountUp
 import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useInView } from 'react-intersection-observer';  // Si lo necesitas en tu código
+import { useScrollPosition } from './useScrollPosition';  // Si lo necesitas en tu código
+import { VIPBenefits } from './VIPBenefits';  // Si lo necesitas en tu código
 
 const GlowingButton: React.FC<{ href: string; className?: string; children: React.ReactNode }> = ({ href, className, children }) => (
   <Link href={href} passHref>
@@ -24,7 +28,7 @@ const reviews = [
     id: 1,
     name: 'Mystic',
     photo: '/Mystic.jpg',
-    text: 'Gané nitro en el, recomendado'.replace("'", "&#39;"),  // Se escapa la comilla simple
+    text: 'Gané nitro en el, recomendado'.replace("'", "&#39;"),  // Escapando la comilla simple
     rating: 5,
     memberSince: '3 meses',
   },
