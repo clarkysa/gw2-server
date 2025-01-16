@@ -10,9 +10,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { VIPBenefits } from './VIPBenefits';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./components/Card";
-import { Button } from "./components/Button";
-import { Badge } from "-/components/Badge";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./components/ui/card";
+import { Button } from "./components/ui/button";
+import { Badge } from "./components/ui/badge";
 
 const GlowingButton: React.FC<{ href: string; className?: string; children: React.ReactNode }> = ({ href, className, children }) => (
   <Link href={href} passHref>
@@ -270,7 +270,7 @@ export default function HomePage() {
                 suffix: "+",
                 gradient: "from-blue-400 to-blue-600"
               },
-              { 
+              {
                 icon: <FaUserShield className="text-5xl mb-4 text-purple-400" />, 
                 title: "Staff Dedicado", 
                 value: staff,
@@ -425,104 +425,104 @@ export default function HomePage() {
       </section>
 
       {/* Enhanced Subscription Tiers Section */}
-<section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
-  <div className="absolute inset-0 bg-[url('/patterns/circuit-board.svg')] opacity-5"></div>
-  <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 via-pink-600/10 to-red-600/10"></div>
+      <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/patterns/circuit-board.svg')] opacity-5"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 via-pink-600/10 to-red-600/10"></div>
 
-  <div className="max-w-7xl mx-auto px-6 relative z-10">
-    <div className="text-center mb-16" data-aos="fade-up">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Selecciona tu suscripción</h2>
-    </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-16" data-aos="fade-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Selecciona tu suscripción</h2>
+          </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-      {[
-        {
-          name: "Gold",
-          price: "3.99",
-          features: [
-            "⬆️ Eleva tu estatus con un rango único que te coloca por encima de los VIP Y Boosters.",
-            "🖼️ Permisos de imagen en general.",
-            "⭐ Permisos de emotes & stickers externos.",
-            "🗣️ Expresa tus pensamientos: envía mensajes de voz y exprésate.",
-            "💰 Opción de reclamar 1 millón en monedas del servidor.",
-            "Acceso a Discord"
-          ],
-          style: "border-yellow-500/20 bg-gradient-to-b from-yellow-950/50 to-transparent",
-          nameStyle: "text-yellow-400",
-          buttonStyle: "bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400"
-        },
-        {
-          name: "Diamond",
-          price: "5.99",
-          features: [
-            "⚡ Acceso legendario: disfruta de todas las ventajas de los niveles anteriores.",
-            "🎵 Soundboard habilitado: transforma tus canales de voz con un panel de sonidos.",
-            "⏱️ Inmunidad al Slowmode.",
-            "💰 Opción de reclamar 2 millones (incluidos los niveles anteriores) en moneda del servidor.",
-            "Acceso a Discord"
-          ],
-          style: "border-cyan-500/20 bg-gradient-to-b from-cyan-950/50 to-transparent",
-          nameStyle: "text-cyan-400",
-          buttonStyle: "bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400",
-          popular: true
-        },
-        {
-          name: "Elite",
-          price: "11.99",
-          features: [
-            "⚡ Acceso legendario: disfruta de todas las ventajas de los niveles anteriores.",
-            "🎤 Posibilidad de personalizar todos los aspectos (Nombre, Icono, Color)",
-            "🎮 Capacidad de otorgar y quitar usuarios del rol.",
-            "🎤 Opción para crear tu propio VC permanente.",
-            "⭐ 25% de aumento de experiencia en VC y Chat.",
-            "🤖 Neko comandos en general.",
-            "Acceso a Discord"
-          ],
-          style: "border-red-500/20 bg-gradient-to-b from-red-950/50 to-transparent",
-          nameStyle: "text-red-400",
-          buttonStyle: "bg-red-500/20 hover:bg-red-500/30 text-red-400"
-        }
-      ].map((tier, index) => (
-        <Card 
-          key={index}
-          className={`relative border ${tier.style} backdrop-blur-sm`}
-        >
-          {tier.popular && (
-            <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-pink-500">
-              LO MÁS POPULAR
-            </Badge>
-          )}
-          <CardHeader>
-            <h3 className={`text-3xl font-bold text-center ${tier.nameStyle}`}>
-              {tier.name}
-            </h3>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="text-center">
-              <span className="text-4xl font-bold">${tier.price}</span>
-              <span className="text-gray-400">/mes</span>
-            </div>
-            <ul className="space-y-4">
-              {tier.features.map((feature, index) => (
-                <li key={index} className="flex items-start gap-2 text-gray-300">
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-          <CardFooter>
-            <Button 
-              className={`w-full ${tier.buttonStyle}`}
-              variant="ghost"
-            >
-              Súmate
-            </Button>
-          </CardFooter>
-        </Card>
-      ))}
-    </div>
-  </div>
-</section>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {[
+              {
+                name: "Gold",
+                price: "3.99",
+                features: [
+                  "⬆️ Eleva tu estatus con un rango único que te coloca por encima de los VIP Y Boosters.",
+                  "🖼️ Permisos de imagen en general.",
+                  "⭐ Permisos de emotes & stickers externos.",
+                  "🗣️ Expresa tus pensamientos: envía mensajes de voz y exprésate.",
+                  "💰 Opción de reclamar 1 millón en monedas del servidor.",
+                  "Acceso a Discord"
+                ],
+                style: "border-yellow-500/20 bg-gradient-to-b from-yellow-950/50 to-transparent",
+                nameStyle: "text-yellow-400",
+                buttonStyle: "bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400"
+              },
+              {
+                name: "Diamond",
+                price: "5.99",
+                features: [
+                  "⚡ Acceso legendario: disfruta de todas las ventajas de los niveles anteriores.",
+                  "🎵 Soundboard habilitado: transforma tus canales de voz con un panel de sonidos.",
+                  "⏱️ Inmunidad al Slowmode.",
+                  "💰 Opción de reclamar 2 millones (incluidos los niveles anteriores) en moneda del servidor.",
+                  "Acceso a Discord"
+                ],
+                style: "border-cyan-500/20 bg-gradient-to-b from-cyan-950/50 to-transparent",
+                nameStyle: "text-cyan-400",
+                buttonStyle: "bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400",
+                popular: true
+              },
+              {
+                name: "Elite",
+                price: "11.99",
+                features: [
+                  "⚡ Acceso legendario: disfruta de todas las ventajas de los niveles anteriores.",
+                  "🎤 Posibilidad de personalizar todos los aspectos (Nombre, Icono, Color)",
+                  "🎮 Capacidad de otorgar y quitar usuarios del rol.",
+                  "🎤 Opción para crear tu propio VC permanente.",
+                  "⭐ 25% de aumento de experiencia en VC y Chat.",
+                  "🤖 Neko comandos en general.",
+                  "Acceso a Discord"
+                ],
+                style: "border-red-500/20 bg-gradient-to-b from-red-950/50 to-transparent",
+                nameStyle: "text-red-400",
+                buttonStyle: "bg-red-500/20 hover:bg-red-500/30 text-red-400"
+              }
+            ].map((tier, index) => (
+              <Card 
+                key={index}
+                className={`relative border ${tier.style} backdrop-blur-sm`}
+              >
+                {tier.popular && (
+                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-pink-500">
+                    LO MÁS POPULAR
+                  </Badge>
+                )}
+                <CardHeader>
+                  <h3 className={`text-3xl font-bold text-center ${tier.nameStyle}`}>
+                    {tier.name}
+                  </h3>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="text-center">
+                    <span className="text-4xl font-bold">${tier.price}</span>
+                    <span className="text-gray-400">/mes</span>
+                  </div>
+                  <ul className="space-y-4">
+                    {tier.features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-2 text-gray-300">
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button 
+                    className={`w-full ${tier.buttonStyle}`}
+                    variant="ghost"
+                  >
+                    Súmate
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Enhanced Final CTA */}
       <section className="py-24 bg-gradient-to-b from-gray-900 to-blue-900 relative overflow-hidden">
@@ -583,13 +583,13 @@ export default function HomePage() {
               </ul>
             </div>
             <div>
-              <h4 className="text-lgfont-semibold mb-4">Comunidad</h4>
+              <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
               <ul className="space-y-2">
                 <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
                 <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Soporte</Link></li>
                 <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contacto</Link></li>
                 <li><Link href="/rules" className="text-gray-400 hover:text-white transition-colors">Reglas</Link></li>
-              </</ul>
+              </ul>
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
