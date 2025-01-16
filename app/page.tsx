@@ -513,6 +513,7 @@ export default function HomePage() {
                 <CardFooter>
                   <Button 
                     className={`w-full ${tier.buttonStyle}`}
+                    onClick={() => window.open('https://discord.gg/gatitos2', '_blank')}
                   >
                     Súmate
                   </Button>
@@ -579,6 +580,8 @@ export default function HomePage() {
                 <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">Sobre Nosotros</Link></li>
                 <li><Link href="/events" className="text-gray-400 hover:text-white transition-colors">Eventos</Link></li>
                 <li><Link href="/reviews" className="text-gray-400 hover:text-white transition-colors">Reseñas</Link></li>
+              </ul>
+            transition-colors">Reseñas</Link></li>
               </ul>
             </div>
             <div>
