@@ -9,7 +9,7 @@ import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
-import { useScrollPosition } from '../hooks/useScrollPosition';
+import { useScrollPosition } from './useScrollPosition';
 import { VIPBenefits } from './VIPBenefits';
 
 // GlowingButton component
