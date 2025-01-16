@@ -10,9 +10,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { VIPBenefits } from './VIPBenefits';
-import { Card, CardContent, CardFooter, CardHeader } from "./components/Card";
-import { Button } from "./components/Button";
-import { Badge } from "./components/Badge";
+import { Card, CardContent, CardFooter, CardHeader } from "./components/ui/card";
+import { Button } from "./components/ui/button";
+import { Badge } from "./components/ui/badge";
 
 const GlowingButton: React.FC<{ href: string; className?: string; children: React.ReactNode }> = ({ href, className, children }) => (
   <Link href={href} passHref>
@@ -513,7 +513,6 @@ export default function HomePage() {
                 <CardFooter>
                   <Button 
                     className={`w-full ${tier.buttonStyle}`}
-                    variant="ghost"
                   >
                     Súmate
                   </Button>
@@ -616,4 +615,3 @@ export default function HomePage() {
     </div>
   );
 }
-
