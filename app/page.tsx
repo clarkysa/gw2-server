@@ -119,19 +119,11 @@ const Home: React.FC = () => {
             </span>
           </div>
 
-          <Link
-            href="https://discord.gg/gatitos2"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative group inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
-          >
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
-            <span className="relative flex items-center">
-              <FaDiscord className="mr-2 text-xl" />
-              <span>Únete Ahora</span>
-              <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
-            </span>
-          </Link>
+          <GlowingButton href="https://discord.gg/gatitos2">
+            <FaDiscord className="mr-2 text-xl" />
+            Únete Ahora
+            <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+          </GlowingButton>
         </div>
       </header>
 
@@ -166,19 +158,11 @@ const Home: React.FC = () => {
             data-aos="fade-up" 
             data-aos-delay="200"
           >
-            <a
-              href="https://discord.gg/gatitos2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative group px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
-            >
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
-              <span className="relative flex items-center">
-                <FaDiscord className="mr-2 text-xl" />
-                Únete a la Aventura
-                <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </a>
+            <GlowingButton href="https://discord.gg/gatitos2">
+              <FaDiscord className="mr-2 text-xl" />
+              Únete a la Aventura
+              <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+            </GlowingButton>
           </div>
         </div>
 
