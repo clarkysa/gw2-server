@@ -9,7 +9,7 @@ import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
-import { VIPBenefits } from '../components/VIPBenefits';
+import { VIPBenefits } from './VIPBenefits';
 
 const GlowingButton: React.FC<{ href: string; className?: string; children: React.ReactNode }> = ({ href, className, children }) => (
   <Link href={href} passHref>
