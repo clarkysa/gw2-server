@@ -9,7 +9,7 @@ import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
-import { VIPBenefits } from '../components/VIPBenefits';
+import { VIPBenefits } from './VIPBenefits';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -566,7 +566,6 @@ export default function HomePage() {
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
-              <ul className="space-y-2">semibold mb-4">Comunidad</h4>
               <ul className="space-y-2">
                 <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
                 <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Soporte</Link></li>
