@@ -27,7 +27,7 @@ const reviews = [
     id: 1,
     name: 'Mystic',
     photo: '/Mystic.jpg',
-    text: 'Gané nitro en el, recomendado',
+    text: 'Gané nitro en él, recomendado', // Corregí la coma por un error tipográfico
     rating: 5,
     memberSince: '3 meses',
   },
@@ -35,7 +35,7 @@ const reviews = [
     id: 2,
     name: 'Bob',
     photo: '/images/bob.jpg',
-    text: 'Los eventos son super divertidos. Nunca me los pierdo!',
+    text: 'Los eventos son súper divertidos. ¡Nunca me los pierdo!',
     rating: 4,
     memberSince: '1 año',
   },
