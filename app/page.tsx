@@ -8,9 +8,9 @@ import CountUp from 'react-countup';  // Reagregando CountUp
 import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useInView } from 'react-intersection-observer';  // Si lo necesitas en tu código
-import { useScrollPosition } from './useScrollPosition';  // Si lo necesitas en tu código
-import { VIPBenefits } from './VIPBenefits';  // Si lo necesitas en tu código
+import { useInView } from 'react-intersection-observer';  // Importación necesaria
+import { useScrollPosition } from './useScrollPosition';  // Importación necesaria
+import { VIPBenefits } from './VIPBenefits';  // Importación necesaria
 
 const GlowingButton: React.FC<{ href: string; className?: string; children: React.ReactNode }> = ({ href, className, children }) => (
   <Link href={href} passHref>
@@ -234,6 +234,9 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+    </div>
+  );
+}
 
       {/* Enhanced Statistics Section */}
       <section className="py-24 bg-gray-800 relative overflow-hidden" ref={ref}>
