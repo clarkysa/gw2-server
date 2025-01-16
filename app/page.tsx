@@ -501,7 +501,7 @@ export default function HomePage() {
           <p className="text-gray-400">
             &copy; {new Date().getFullYear()} GW2 | Todos los derechos reservados
           </p>
-          {/* Aquí agregamos el texto "Codificado por Junsred" con enlace */}
+          {/* Agregado el texto "Codificado por Junsred" con enlace */}
           <p className="text-gray-400 mt-4">
             <span>&#60;&#47;&#62;</span> Codificado por 
             <a href="https://github.com/junsred" target="_blank" className="text-blue-400 hover:underline">
