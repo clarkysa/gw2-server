@@ -10,9 +10,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { VIPBenefits } from './VIPBenefits';
-import { Card, CardContent, CardFooter, CardHeader } from "./ui/Card";
-import { Button } from "./ui/Button";
-import { Badge } from "./ui/Badge";
+import { Card, CardContent, CardFooter, CardHeader } from "./components/Card";
+import { Button } from "./components/Button";
+import { Badge } from "./components/Badge";
 
 const GlowingButton: React.FC<{ href: string; className?: string; children: React.ReactNode }> = ({ href, className, children }) => (
   <Link href={href} passHref>
@@ -581,11 +581,9 @@ export default function HomePage() {
                 <li><Link href="/events" className="text-gray-400 hover:text-white transition-colors">Eventos</Link></li>
                 <li><Link href="/reviews" className="text-gray-400 hover:text-white transition-colors">Reseñas</Link></li>
               </ul>
-            transition-colors">Reseñas</Link></li>
-              </ul>
             </div>
             <div>
-              <h4 className="textlg font-semibold mb-4">Comunidad</h4>
+              <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
               <ul className="space-y-2">
                 <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
                 <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Soporte</Link></li>
