@@ -43,4 +43,4 @@ const Card: React.FC<CardProps> = ({ title, description, imageUrl, link }) => (
   </div>
 );
 
-export default Card; // Exportar el componente Card como exportación por defecto
+export default Card; // Exportar el componente Card por defecto
