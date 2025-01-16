@@ -450,7 +450,7 @@ export default function HomePage() {
               style: "border-yellow-500/20 bg-gradient-to-b from-yellow-950/50 to-transparent",
               nameStyle: "text-yellow-400",
               buttonStyle: "bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400",
-              link: "https://discord.gg/gatitos-gold"
+              link: "https://www.patreon.com/checkout/GW2?rid=24029425"
             },
             {
               name: "Diamond",
@@ -465,7 +465,7 @@ export default function HomePage() {
               style: "border-cyan-500/20 bg-gradient-to-b from-cyan-950/50 to-transparent",
               nameStyle: "text-cyan-400",
               buttonStyle: "bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400",
-              link: "https://discord.gg/gatitos-diamond",
+              link: "https://www.patreon.com/checkout/GW2?rid=24031413",
               popular: true
             },
             {
@@ -483,7 +483,7 @@ export default function HomePage() {
               style: "border-red-500/20 bg-gradient-to-b from-red-950/50 to-transparent",
               nameStyle: "text-red-400",
               buttonStyle: "bg-red-500/20 hover:bg-red-500/30 text-red-400",
-              link: "https://discord.gg/gatitos-elite"
+              link: "https://www.patreon.com/checkout/GW2?rid=24031434"
             }
           ].map((tier, index) => (
             <Card
