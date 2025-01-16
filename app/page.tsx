@@ -27,7 +27,7 @@ const reviews = [
     id: 1,
     name: 'Mystic',
     photo: '/Mystic.jpg',
-    text: 'Gané nitro en él, recomendado', // Corregí la coma por un error tipográfico
+    text: 'Gané nitro en él, recomendado',
     rating: 5,
     memberSince: '3 meses',
   },
@@ -35,7 +35,7 @@ const reviews = [
     id: 2,
     name: 'Bob',
     photo: '/images/bob.jpg',
-    text: 'Los eventos son súper divertidos. ¡Nunca me los pierdo!',
+    text: '¡Los eventos son súper divertidos. ¡Nunca me los pierdo!',
     rating: 4,
     memberSince: '1 año',
   },
@@ -49,7 +49,7 @@ const reviews = [
   },
 ];
 
-const HomePage: React.FC = () => {
+export default function HomePage() {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const { ref, inView } = useInView({
     threshold: 0.1,
@@ -318,209 +318,194 @@ const HomePage: React.FC = () => {
       </div>
     </section>
 
-      {/* Enhanced Review Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/patterns/circuit-board.svg')] opacity-5"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16" data-aos="fade-up">
-            <span className="inline-block px-4 py-2 bg-blue-900/30 rounded-full text-blue-400 text-sm font-medium mb-4">
-              RESEÑAS
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text">
-              Lo que dicen nuestros miembros
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {reviews.map((review, index) => (
-              <div 
-                key={review.id}
-                className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 transform hover:-translate-y-2 transition-all duration-300"
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
-              >
-                <div className="flex items-center mb-4">
-                  <Image 
-                    src={review.photo || "/placeholder.svg"}
-                    alt={review.name}
-                    width={50}
-                    height={50}
-                    className="rounded-full mr-4"
-                  />
-                  <div>
-                    <h3 className="font-semibold text-lg">{review.name}</h3>
-                    <p className="text-sm text-gray-400">Miembro desde hace {review.memberSince}</p>
-                  </div>
-                </div>
-                <p className="text-gray-300 mb-4">{review.text}</p>
-                <div className="flex items-center">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <FaStar
-                      key={star}
-                      className={`cursor-pointer ${star <= review.rating ? 'text-yellow-400' : 'text-gray-400'}`}
-                      onClick={() => handleRating(review.id, star)}
-                    />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Link href="/reviews" passHref>
-              <button 
-                className="group relative inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
-              >
-                <span className="absolute inset-0 w-full h-full bg-white/30 transform -translate-x-full group-hover:translate-x-full transition-all duration-700 filter blur-sm"></span>
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400/50 to-blue-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                <span className="relative z-10">Ver más reseñas</span>
-              </button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced VIP Benefits Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/vip-bg.jpg')] opacity-5 bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/10 via-yellow-500/10 to-orange-500/10"></div>
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16" data-aos="fade-up">
-            <span className="inline-block px-4 py-2 bg-yellow-900/30 rounded-full text-yellow-400 text-sm font-medium mb-4">
-              BENEFICIOS VIP
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-yellow-500 text-transparent bg-clip-text">
-              Experiencia VIP
-            </h2>
-          </div>
-
-          <VIPBenefits />
-        </div>
-      </section>
-
-      {/* Enhanced Live Chat Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/patterns/circuit-board.svg')] opacity-5"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16" data-aos="fade-up">
-            <span className="inline-block px-4 py-2 bg-blue-900/30 rounded-full text-blue-400 text-sm font-medium mb-4">
-              CHAT EN VIVO
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text">
-              Únete a la conversación
-            </h2>
-          </div>
-
-          <div className="relative" data-aos="zoom-in">
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl"></div>
-            <div className="relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 shadow-2xl">
-              <div
-                className="rounded-xl overflow-hidden"
-                style={{ width: '100%', height: '600px' }}
-              >
-                <iframe
-                  src="https://e.widgetbot.io/channels/299881420891881473/355719584830980096"
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                ></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced Final CTA */}
-      <section className="py-24 bg-gradient-to-b from-gray-900 to-blue-900 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 -left-4 w-96 h-96 bg-blue-500/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
-          <div className="absolute bottom-0 -right-4 w-96 h-96 bg-purple-500/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-        </div>
-
-        <div className="max-w-4xl mx-auto text-center px-6 relative z-10" data-aos="fade-up">
+    {/* Enhanced Review Section */}
+    <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/patterns/circuit-board.svg')] opacity-5"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16" data-aos="fade-up">
           <span className="inline-block px-4 py-2 bg-blue-900/30 rounded-full text-blue-400 text-sm font-medium mb-4">
-            ÚNETE AHORA
+            RESEÑAS
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-300 to-blue-500 text-transparent bg-clip-text">
-            ¿Listo para ser parte de algo especial?
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text">
+            Lo que dicen nuestros miembros
           </h2>
-          <p className="text-xl text-blue-100 mb-8">
-            No esperes más para unirte a la comunidad más acogedora de Discord.
-          </p>
-          <a
-            href="https://discord.gg/gatitos2"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
-          >
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
-            <span className="relative flex items-center">
-              <FaDiscord className="mr-2 text-xl transform group-hover:scale-110 transition-transform duration-300" />
-              <span>Únete Ahora</span>
-              <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
-            </span>
-          </a>
         </div>
-      </section>
-
-      {/* Enhanced Footer with updated links */}
-      <footer className="py-16 bg-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent"></div>
-        <div className="max-w-7xl mx-auto px-6 relative">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <Image 
-                src="/images/logo.png"
-                alt="GW2 Logo"
-                width={64} 
-                height={64} 
-                className="rounded-full border-2 border-blue-400" 
-              />
-              <h3 className="text-xl font-bold">GW2</h3>
-              <p className="text-gray-400">La comunidad más acogedora de Discord</p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
-              <ul className="space-y-2">
-                <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Inicio</Link></li>
-                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">Sobre Nosotros</Link></li>
-                <li><Link href="/events" className="text-gray-400 hover:text-white transition-colors">Eventos</Link></li>
-                <li><Link href="/reviews" className="text-gray-400 hover:text-white transition-colors">Reseñas</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
-              <ul className="space-y-2">
-                <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
-                <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Soporte</Link></li>
-                <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contacto</Link></li>
-                <li><Link href="/rules" className="text-gray-400 hover:text-white transition-colors">Reglas</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaTwitter size={24} /></a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaYoutube size={24} /></a>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {reviews.map((review, index) => (
+            <div 
+              key={review.id}
+              className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 transform hover:-translate-y-2 transition-all duration-300"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <div className="flex items-center mb-4">
+                <Image 
+                  src={review.photo || "/placeholder.svg"}
+                  alt={review.name}
+                  width={50}
+                  height={50}
+                  className="rounded-full mr-4"
+                />
+                <div>
+                  <h3 className="font-semibold text-lg">{review.name}</h3>
+                  <p className="text-sm text-gray-400">Miembro desde hace {review.memberSince}</p>
+                </div>
+              </div>
+              <p className="text-gray-300 mb-4">{review.text}</p>
+              <div className="flex items-center">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <FaStar
+                    key={star}
+                    className={`${star <= review.rating ? 'text-yellow-400' : 'text-gray-400'}`}
+                  />
+                ))}
               </div>
             </div>
-          </div>
-          <div className="mt-12 pt-8 border-t border-gray-800 text-center">
-            <p className="text-gray-400">
-              &copy; {new Date().getFullYear()} GW2 | Todos los derechos reservados
-            </p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Enhanced VIP Benefits Section */}
+    <section className="py-24 bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/images/vip-bg.jpg')] opacity-5 bg-cover bg-center"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/10 via-yellow-500/10 to-orange-500/10"></div>
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16" data-aos="fade-up">
+          <span className="inline-block px-4 py-2 bg-yellow-900/30 rounded-full text-yellow-400 text-sm font-medium mb-4">
+            BENEFICIOS VIP
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-300 to-yellow-500 text-transparent bg-clip-text">
+            Experiencia VIP
+          </h2>
+        </div>
+
+        <VIPBenefits />
+      </div>
+    </section>
+
+    {/* Enhanced Live Chat Section */}
+    <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/patterns/circuit-board.svg')] opacity-5"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16" data-aos="fade-up">
+          <span className="inline-block px-4 py-2 bg-blue-900/30 rounded-full text-blue-400 text-sm font-medium mb-4">
+            CHAT EN VIVO
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text">
+            Únete a la conversación
+          </h2>
+        </div>
+
+        <div className="relative" data-aos="zoom-in">
+          <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl"></div>
+          <div className="relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 shadow-2xl">
+            <div
+              className="rounded-xl overflow-hidden"
+              style={{ width: '100%', height: '600px' }}
+            >
+              <iframe
+                src="https://e.widgetbot.io/channels/299881420891881473/355719584830980096"
+                width="100%"
+                height="100%"
+              ></iframe>
+            </div>
           </div>
         </div>
-      </footer>
-    </div>
+      </div>
+    </section>
+
+    {/* Enhanced Final CTA */}
+    <section className="py-24 bg-gradient-to-b from-gray-900 to-blue-900 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute top-0 -left-4 w-96 h-96 bg-blue-500/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+        <div className="absolute bottom-0 -right-4 w-96 h-96 bg-purple-500/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+      </div>
+
+      <div className="max-w-4xl mx-auto text-center px-6 relative z-10" data-aos="fade-up">
+        <span className="inline-block px-4 py-2 bg-blue-900/30 rounded-full text-blue-400 text-sm font-medium mb-4">
+          ÚNETE AHORA
+        </span>
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-300 to-blue-500 text-transparent bg-clip-text">
+          ¿Listo para ser parte de algo especial?
+        </h2>
+        <p className="text-xl text-blue-100 mb-8">
+          No esperes más para unirte a la comunidad más acogedora de Discord.
+        </p>
+        <a
+          href="https://discord.gg/gatitos2"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
+        >
+          <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+          <span className="relative flex items-center">
+            <FaDiscord className="mr-2 text-xl transform group-hover:scale-110 transition-transform duration-300" />
+            <span>Únete Ahora</span>
+            <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+          </span>
+        </a>
+      </div>
+    </section>
+
+    {/* Enhanced Footer */}
+    <footer className="py-16 bg-gray-900 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent"></div>
+      <div className="max-w-7xl mx-auto px-6 relative">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="space-y-4">
+            <Image 
+              src="/images/logo.png"
+              alt="GW2 Logo"
+              width={64} 
+              height={64} 
+              className="rounded-full border-2 border-blue-400" 
+            />
+            <h3 className="text-xl font-bold">GW2</h3>
+            <p className="text-gray-400">La comunidad más acogedora de Discord</p>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
+            <ul className="space-y-2">
+              <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Inicio</Link></li>
+              <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">Sobre Nosotros</Link></li>
+              <li><Link href="/events" className="text-gray-400 hover:text-white transition-colors">Eventos</Link></li>
+              <li><Link href="/reviews" className="text-gray-400 hover:text-white transition-colors">Reseñas</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
+            <ul className="space-y-2">
+              <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
+              <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Soporte</Link></li>
+              <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contacto</Link></li>
+              <li><Link href="/rules" className="text-gray-400 hover:text-white transition-colors">Reglas</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
+            <div className="flex space-x-4">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaTwitter size={24} /></a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaYoutube size={24} /></a>
+            </div>
+          </div>
+        </div>
+        <div className="mt-12 pt-8 border-t border-gray-800 text-center">
+          <p className="text-gray-400">
+            &copy; {new Date().getFullYear()} GW2 | Todos los derechos reservados
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
   );
-};
+}
 
-export default Home;
-
+export default HomePage;
