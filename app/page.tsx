@@ -453,7 +453,6 @@ export default function HomePage() {
               link: "https://www.patreon.com/checkout/GW2?rid=24029425"
             },
             {
-            {
               name: "Diamond",
               price: "5.99",
               features: [
