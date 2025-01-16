@@ -10,8 +10,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { VIPBenefits } from './VIPBenefits';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./components/ui/Card";
-import { Button } from "./components/ui/Button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./components/Card";
+import { Button } from "./components/Button";
 
 const GlowingButton: React.FC<{ href: string; className?: string; children: React.ReactNode }> = ({ href, className, children }) => (
   <Link href={href} passHref>
