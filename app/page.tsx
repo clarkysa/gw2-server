@@ -23,41 +23,34 @@ const GlowingButton: React.FC<{ href: string; className?: string; children: Reac
   </Link>
 );
 
-// En el componente Home o en otros lugares, reemplaza comillas simples dentro de las cadenas por entidades HTML
-const reviews = [
-  {
-    id: 1,
-    name: 'Mystic',
-    photo: '/Mystic.jpg',
-    text: 'Gane nitro en el, recomendado'.replace("'", "&#39;"),  // Se escapa la comilla simple
-    rating: 5,
-    memberSince: '3 meses',
-  },
-  {
-    id: 2,
-    name: 'Bob',
-    photo: '/images/bob.jpg',
-    text: 'Los eventos son super divertidos. Nunca me los pierdo!',
-    rating: 4,
-    memberSince: '1 año',
-  },
-  {
-    id: 3,
-    name: 'Charlie',
-    photo: '/images/charlie.jpg',
-    text: 'La comunidad es muy acogedora. Me siento como en casa.',
-    rating: 5,
-    memberSince: '3 meses',
-  },
-];
-
-  const handleRating = (reviewId: number, newRating: number) => {
-    setReviews((prevReviews) =>
-      prevReviews.map((review) =>
-        review.id === reviewId ? { ...review, rating: newRating } : review
-      )
-    );
-  };
+const Home: React.FC = () => {
+  // Estado de las reseñas
+  const [reviews, setReviews] = useState([
+    {
+      id: 1,
+      name: 'Mystic',
+      photo: '/Mystic.jpg',
+      text: 'Gane nitro en el, recomendado'.replace("'", "&#39;"),  // Se escapa la comilla simple
+      rating: 5,
+      memberSince: '3 meses',
+    },
+    {
+      id: 2,
+      name: 'Bob',
+      photo: '/images/bob.jpg',
+      text: 'Los eventos son super divertidos. Nunca me los pierdo!',
+      rating: 4,
+      memberSince: '1 año',
+    },
+    {
+      id: 3,
+      name: 'Charlie',
+      photo: '/images/charlie.jpg',
+      text: 'La comunidad es muy acogedora. Me siento como en casa.',
+      rating: 5,
+      memberSince: '3 meses',
+    },
+  ]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white font-inter overflow-hidden">
