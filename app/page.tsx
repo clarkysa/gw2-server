@@ -454,56 +454,58 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Enhanced Footer */}
-      <footer className="py-16 bg-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent"></div>
-        <div className="max-w-7xl mx-auto px-6 relative">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <Image 
-                src="/images/logo.png"
-                alt="GW2 Logo"
-                width={64} 
-                height={64} 
-                className="rounded-full border-2 border-blue-400" 
-              />
-              <h3 className="text-xl font-bold">GW2</h3>
-              <p className="text-gray-400">La comunidad más acogedora de Discord</p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
-              <ul className="space-y-2">
-                <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Inicio</Link></li>
-                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">Sobre Nosotros</Link></li>
-                <li><Link href="/events" className="text-gray-400 hover:text-white transition-colors">Eventos</Link></li>
-                <li><Link href="/reviews" className="text-gray-400 hover:text-white transition-colors">Reseñas</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
-              <ul className="space-y-2">
-                <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
-                <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Soporte</Link></li>
-                <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contacto</Link></li>
-                <li><Link href="/rules" className="text-gray-400 hover:text-white transition-colors">Reglas</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaTwitter size={24} /></a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaYoutube size={24} /></a>
-              </div>
-            </div>
+    {/* Enhanced Footer */}
+    <footer className="py-16 bg-gray-900 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent"></div>
+      <div className="max-w-7xl mx-auto px-6 relative">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="space-y-4">
+            <Image 
+              src="/images/logo.png"
+              alt="GW2 Logo"
+              width={64} 
+              height={64} 
+              className="rounded-full border-2 border-blue-400" 
+            />
+            <h3 className="text-xl font-bold">GW2</h3>
+            <p className="text-gray-400">La comunidad más acogedora de Discord</p>
           </div>
-          <div className="mt-12 pt-8 border-t border-gray-800 text-center">
-            <p className="text-gray-400">
-              &copy; {new Date().getFullYear()} GW2 | Todos los derechos reservados
-            </p>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
+            <ul className="space-y-2">
+              <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Inicio</Link></li>
+              <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">Sobre Nosotros</Link></li>
+              <li><Link href="/events" className="text-gray-400 hover:text-white transition-colors">Eventos</Link></li>
+              <li><Link href="/reviews" className="text-gray-400 hover:text-white transition-colors">Reseñas</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
+            <ul className="space-y-2">
+              <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
+              <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Soporte</Link></li>
+              <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contacto</Link></li>
+              <li><Link href="/rules" className="text-gray-400 hover:text-white transition-colors">Reglas</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
+            <div className="flex space-x-4">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaTwitter size={24} /></a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaYoutube size={24} /></a>
+            </div>
           </div>
         </div>
-      </footer>
-    </div>
-  );
-}
+        <div className="mt-12 pt-8 border-t border-gray-800 text-center">
+          <p className="text-gray-400">
+            &copy; {new Date().getFullYear()} GW2 | Todos los derechos reservados
+          </p>
+          {/* Aquí agregamos el texto "Codificado por Junsred" con enlace */}
+          <p className="text-gray-400 mt-4">
+            <span>&#60;&#47;&#62;</span> Codificado por <a href="https://github.com/junsred" target="_blank" className="text-blue-400 hover:underline">Junsred</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
