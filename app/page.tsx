@@ -25,11 +25,6 @@ const GlowingButton: React.FC<{ href: string; className?: string; children: Reac
   </Link>
 );
 
-export const metadata = {
-  title: "GW2 | Pagina Inicial",
-  description: "Bienvenido al mundo de los gatitos nwn.",
-};
-
 const reviews = [
   {
     id: 1,
@@ -78,6 +73,11 @@ export default function HomePage() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+export const metadata = {
+  title: "GW2 | Pagina Inicial",
+  description: "Bienvenido al mundo de los gatitos nwn.",
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white font-inter overflow-hidden">
