@@ -8,15 +8,24 @@ import CountUp from 'react-countup';
 import Snowfall from 'react-snowfall';
 import Image from 'next/image';
 import Link from 'next/link';
-import GlowingButton from './GlowingButton';
-import { JSX } from 'react';
-import Head from 'next/head'; // Componente de Next.js para manejar el <head>
-import './animations.css';
+import { useInView } from 'react-intersection-observer';
 
-const Home = () => {
+// GlowingButton component
+const GlowingButton: React.FC<{ href: string; className?: string; children: React.ReactNode }> = ({ href, className, children }) => (
+  <Link href={href} passHref>
+    <span className={`relative inline-flex group ${className}`}>
+      <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-sm opacity-75 group-hover:opacity-100 transition-opacity duration-200"></span>
+      <span className="relative inline-flex items-center px-6 py-3 bg-gray-900 rounded-full text-white font-medium transition-all duration-200 ease-out hover:bg-gray-800">
+        {children}
+      </span>
+    </span>
+  </Link>
+);
+
+const Home: React.FC = () => {
   const [members] = useState<number>(22468);
   const [staff] = useState<number>(50);
-  const [messages] = useState<number>(1461747);
+  const [messages] = useState<number>(1461);
   const [isScrolled, setIsScrolled] = useState(false);
   const [reviews, setReviews] = useState([
     {
@@ -44,6 +53,11 @@ const Home = () => {
       memberSince: '3 meses',
     },
   ]);
+
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
   useEffect(() => {
     AOS.init({
@@ -73,17 +87,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white font-inter overflow-hidden">
-      {/* Metadata */}
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Gatitos World 2 - La comunidad más acogedora de Discord" />
-        <meta property="og:image" content="URL_DE_LA_IMAGEN_AQUI" />
-        <meta property="og:site_name" content="Gatitos World 2" />
-        <meta name="robots" content="index, follow" />
-        <link rel="icon" href="/favicon.ico" />
-        <title>GW2 - Tu nuevo hogar en Discord</title>
-      </Head>
-
       {/* Enhanced Visual Effects */}
       <div className="fixed inset-0 z-0">
         <Snowfall
@@ -100,9 +103,6 @@ const Home = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/10 to-purple-900/10"></div>
       </div>
-    </div>
-  );
-};
 
       {/* Enhanced Header */}
       <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
@@ -124,11 +124,19 @@ const Home = () => {
             </span>
           </div>
 
-          <GlowingButton href="https://discord.gg/gatitos2" className="text-white font-medium">
-            <FaDiscord className="mr-2 text-xl" />
-            Únete Ahora
-            <FaArrowRight className="ml-2" />
-          </GlowingButton>
+          <Link
+            href="https://discord.gg/gatitos2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative group inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
+          >
+            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+            <span className="relative flex items-center">
+              <FaDiscord className="mr-2 text-xl" />
+              <span>Únete Ahora</span>
+              <FaArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+            </span>
+          </Link>
         </div>
       </header>
 
@@ -243,7 +251,7 @@ const Home = () => {
                   
                   <div className="relative overflow-hidden rounded-xl mb-6">
                     <Image 
-                      src={item.image}
+                      src={item.image || "/placeholder.svg"}
                       alt={item.title}
                       width={500}
                       height={300}
@@ -266,7 +274,7 @@ const Home = () => {
       </section>
 
       {/* Enhanced Statistics Section */}
-      <section className="py-24 bg-gray-800 relative overflow-hidden">
+      <section className="py-24 bg-gray-800 relative overflow-hidden" ref={ref}>
         <div className="absolute inset-0 bg-[url('/images/stats-bg.jpg')] opacity-10 bg-cover bg-center"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20"></div>
         
@@ -319,13 +327,15 @@ const Home = () => {
                     </div>
                     <h3 className="text-xl font-semibold mb-4 text-gray-100">{stat.title}</h3>
                     <div className="relative">
-                      <CountUp
-                        start={0}
-                        end={stat.value}
-                        duration={3}
-                        separator=","
-                        className={`text-5xl font-bold bg-gradient-to-r ${stat.gradient} text-transparent bg-clip-text`}
-                      />
+                      {inView && (
+                        <CountUp
+                          start={0}
+                          end={stat.value}
+                          duration={3}
+                          separator=","
+                          className={`text-5xl font-bold bg-gradient-to-r ${stat.gradient} text-transparent bg-clip-text`}
+                        />
+                      )}
                       <span className={`text-2xl font-bold bg-gradient-to-r ${stat.gradient} text-transparent bg-clip-text ml-1`}>
                         {stat.suffix}
                       </span>
@@ -338,7 +348,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* New Review Section */}
+      {/* Enhanced Review Section */}
       <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/patterns/circuit-board.svg')] opacity-5"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
@@ -363,7 +373,7 @@ const Home = () => {
               >
                 <div className="flex items-center mb-4">
                   <Image 
-                    src={review.photo}
+                    src={review.photo || "/placeholder.svg"}
                     alt={review.name}
                     width={50}
                     height={50}
@@ -389,15 +399,15 @@ const Home = () => {
           </div>
           
           <div className="text-center mt-12">
-          <Link href="/reviews" passHref>
-            <button 
-              className="group relative inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
-            >
-              <span className="absolute inset-0 w-full h-full bg-white/30 transform -translate-x-full group-hover:translate-x-full transition-all duration-700 filter blur-sm"></span>
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400/50 to-blue-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-              <span className="relative z-10">Ver más reseñas</span>
-            </button>
-          </Link>
+            <Link href="/reviews" passHref>
+              <button 
+                className="group relative inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
+              >
+                <span className="absolute inset-0 w-full h-full bg-white/30 transform -translate-x-full group-hover:translate-x-full transition-all duration-700 filter blur-sm"></span>
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400/50 to-blue-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                <span className="relative z-10">Ver más reseñas</span>
+              </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -417,89 +427,11 @@ const Home = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[
-              {
-                title: "Color VIP Exclusivo",
-                description: "Destaca en el servidor con un color único que refleja tu estatus especial",
-                image: "/images/vip1.png",
-                gradient: "from-purple-500 to-blue-500"
-              },
-              {
-                title: "Acceso Premium",
-                description: "Disfruta de contenido exclusivo, eventos privados y beneficios únicos",
-                image: "/images/vip2.png",
-                gradient: "from-yellow-500 to-orange-500"
-              },
-              {
-                title: "Vanity URL",
-                description: "Obtén el codiciado rol VIP usando .gg/gatitos2 en tu perfil",
-                image: "/images/vip3.png",
-                gradient: "from-blue-500 to-green-500"
-              }
-            ].map((benefit, index) => (
-              <div 
-                key={index}
-                className="group relative"
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
-              >
-                {/* Efecto de luz mejorado */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-white/30 via-yellow-500/30 to-white/30 opacity-0 group-hover:opacity-100 blur-2xl transition-all duration-700"></div>
-                
-                {/* Card Container mejorado */}
-                <div className="relative bg-gray-800/90 backdrop-blur-sm rounded-3xl overflow-hidden transform group-hover:-translate-y-2 transition-all duration-500">
-                  {/* Imagen Container con efecto mejorado */}
-                  <div className="relative h-72 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/80 z-10 group-hover:opacity-50 transition-opacity duration-500"></div>
-                    <Image 
-                      src={benefit.image}
-                      alt={benefit.title}
-                      width={800}
-                      height={600}
-                      className="w-full h-full object-cover transform scale-110 group-hover:scale-125 transition-transform duration-1000 ease-out"
-                      style={{
-                        clipPath: "polygon(0 0, 100% 0%, 100% 85%, 0% 100%)"
-                      }}
-                    />
-                    {/* Efecto de luz brillante mejorado */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20"></div>
-                  </div>
-                  
-                  {/* Contenido mejorado */}
-                  <div className="p-8 relative">
-                    {/* Línea decorativa mejorada */}
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-                    
-                    <h3 className={`text-2xl font-bold mb-3 bg-gradient-to-r ${benefit.gradient} text-transparent bg-clip-text transform group-hover:scale-105 transition-transform duration-300`}>
-                      {benefit.title}
-                    </h3>
-                    <p className="text-gray-300 leading-relaxed">
-                      {benefit.description}
-                    </p>
-                    
-                    {/* Botón mejorado */}
-                    <div className="mt-6">
-                      <a 
-                        href="#" 
-                        className="inline-flex items-center text-sm text-yellow-400 hover:text-yellow-300 transition-colors duration-300 group/btn"
-                      >
-                        <span className="relative">
-                          <span className="absolute -inset-2 bg-yellow-400/20 rounded-lg blur-sm opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></span>
-                          <span className="relative">Saber más</span>
-                        </span>
-                        <FaArrowRight className="ml-2 text-xs transform group-hover/btn:translate-x-1 transition-transform duration-300" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <VIPBenefits />
         </div>
       </section>
 
-      {/* Widgetbot Live Chat Section */}
+      {/* Enhanced Live Chat Section */}
       <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/patterns/circuit-board.svg')] opacity-5"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
@@ -517,7 +449,6 @@ const Home = () => {
           <div className="relative" data-aos="zoom-in">
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl"></div>
             <div className="relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 shadow-2xl">
-              {/* Use a div instead of the custom widgetbot element */}
               <div
                 className="rounded-xl overflow-hidden"
                 style={{ width: '100%', height: '600px' }}
@@ -557,7 +488,7 @@ const Home = () => {
             rel="noopener noreferrer"
             className="relative group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full font-medium transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-600/25 overflow-hidden"
           >
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-xfull bg-gradient-to-r from-blue-400 to-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
             <span className="relative flex items-center">
               <FaDiscord className="mr-2 text-xl transform group-hover:scale-110 transition-transform duration-300" />
               <span>Únete Ahora</span>
@@ -567,55 +498,143 @@ const Home = () => {
         </div>
       </section>
 
-    {/* Enhanced Footer */}
-    <footer className="py-16 bg-gray-900 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent"></div>
-      <div className="max-w-7xl mx-auto px-6 relative">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <Image 
-              src="/images/logo.png"
-              alt="GW2 Logo"
-              width={64} 
-              height={64} 
-              className="rounded-full border-2 border-blue-400" 
-            />
-            <h3 className="text-xl font-bold">GW2</h3>
-            <p className="text-gray-400">La comunidad más acogedora de Discord</p>
+      {/* Enhanced Footer with updated links */}
+      <footer className="py-16 bg-gray-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent"></div>
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="space-y-4">
+              <Image 
+                src="/images/logo.png"
+                alt="GW2 Logo"
+                width={64} 
+                height={64} 
+                className="rounded-full border-2 border-blue-400" 
+              />
+              <h3 className="text-xl font-bold">GW2</h3>
+              <p className="text-gray-400">La comunidad más acogedora de Discord</p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
+              <ul className="space-y-2">
+                <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Inicio</Link></li>
+                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">Sobre Nosotros</Link></li>
+                <li><Link href="/events" className="text-gray-400 hover:text-white transition-colors">Eventos</Link></li>
+                <li><Link href="/reviews" className="text-gray-400 hover:text-white transition-colors">Reseñas</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
+              <ul className="space-y-2">
+                <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
+                <li><Link href="/support" className="text-gray-400 hover:text-white transition-colors">Soporte</Link></li>
+                <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contacto</Link></li>
+                <li><Link href="/rules" className="text-gray-400 hover:text-white transition-colors">Reglas</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaTwitter size={24} /></a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaYoutube size={24} /></a>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
-            <ul className="space-y-2">
-              <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Inicio</Link></li>
-              <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">Sobre Nosotros</Link></li>
-              <li><Link href="/events" className="text-gray-400 hover:text-white transition-colors">Eventos</Link></li>
-              <li><Link href="/reviews" className="text-gray-400 hover:text-white transition-colors">Reseñas</Link></li>
-            </ul>
+          <div className="mt-12 pt-8 border-t border-gray-800 text-center">
+            <p className="text-gray-400">
+              &copy; {new Date().getFullYear()} GW2 | Todos los derechos reservados
+            </p>
           </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Comunidad</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Reglas</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Soporte</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contacto</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Síguenos</h4>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaTwitter size={24} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaYoutube size={24} /></a>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+const VIPBenefits: React.FC = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const benefits = [
+    {
+      title: "Color VIP Exclusivo",
+      description: "Destaca en el servidor con un color único que refleja tu estatus especial",
+      image: "/images/vip1.png",
+      gradient: "from-purple-500 to-blue-500"
+    },
+    {
+      title: "Acceso Premium",
+      description: "Disfruta de contenido exclusivo, eventos privados y beneficios únicos",
+      image: "/images/vip2.png",
+      gradient: "from-yellow-500 to-orange-500"
+    },
+    {
+      title: "Vanity URL",
+      description: "Obtén el codiciado rol VIP usando .gg/gatitos2 en tu perfil",
+      image: "/images/vip3.png",
+      gradient: "from-blue-500 to-green-500"
+    }
+  ];
+
+  return (
+    <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      {benefits.map((benefit, index) => (
+        <div 
+          key={index}
+          className={`group relative transition-all duration-500 transform ${
+            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+          style={{ transitionDelay: `${index * 100}ms` }}
+        >
+          <div className="absolute -inset-1 bg-gradient-to-r from-white/30 via-yellow-500/30 to-white/30 opacity-0 group-hover:opacity-100 blur-2xl transition-all duration-700"></div>
+          
+          <div className="relative bg-gray-800/90 backdrop-blur-sm rounded-3xl overflow-hidden transform group-hover:-translate-y-2 transition-all duration-500">
+            <div className="relative h-72 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/80 z-10 group-hover:opacity-50 transition-opacity duration-500"></div>
+              <Image 
+                src={benefit.image || "/placeholder.svg"}
+                alt={benefit.title}
+                width={800}
+                height={600}
+                className="w-full h-full object-cover transform scale-110 group-hover:scale-125 transition-transform duration-1000 ease-out"
+                style={{
+                  clipPath: "polygon(0 0, 100% 0%, 100% 85%, 0% 100%)"
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20"></div>
+            </div>
+            
+            <div className="p-8 relative">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+              
+              <h3 className={`text-2xl font-bold mb-3 bg-gradient-to-r ${benefit.gradient} text-transparent bg-clip-text transform group-hover:scale-105 transition-transform duration-300`}>
+                {benefit.title}
+              </h3>
+              <p className="text-gray-300 leading-relaxed">
+                {benefit.description}
+              </p>
+              
+              <div className="mt-6">
+                <a 
+                  href="#" 
+                  className="inline-flex items-center text-sm text-yellow-400 hover:text-yellow-300 transition-colors duration-300 group/btn"
+                >
+                  <span className="relative">
+                    <span className="absolute -inset-2 bg-yellow-400/20 rounded-lg blur-sm opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></span>
+                    <span className="relative">Saber más</span>
+                  </span>
+                  <FaArrowRight className="ml-2 text-xs transform group-hover/btn:translate-x-1 transition-transform duration-300" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-gray-800 text-center">
-          <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} GW2 | Todos los derechos reservados
-          </p>
-        </div>
-      </div>
-    </footer>
+      ))}
+    </div>
+  );
+};
 
 export default Home;
