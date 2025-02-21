@@ -1,5 +1,5 @@
 import type React from "react"
-import { Card, CardContent } from "/Card"
+import { Card, CardContent } from ".//Card"
 import { FaCheckCircle, FaStar, FaLock, FaShieldAlt, FaCrown } from "react-icons/fa"
 import Image from "next/image"
 
